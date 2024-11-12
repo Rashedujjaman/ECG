@@ -1,24 +1,49 @@
-﻿<h1 id="tableLabel">Weather forecast</h1>
+<h1 id="tableLabel">Weather forecast</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
 
 <p *ngIf="!forecasts"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
 
 <table *ngIf="forecasts">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let forecast of forecasts">
-            <td>{{ forecast.date }}</td>
-            <td>{{ forecast.temperatureC }}</td>
-            <td>{{ forecast.temperatureF }}</td>
-            <td>{{ forecast.summary }}</td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Temp. (C)</th>
+      <th>Temp. (F)</th>
+      <th>Summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let forecast of forecasts">
+      <td>{{ forecast.date }}</td>
+      <td>{{ forecast.temperatureC }}</td>
+      <td>{{ forecast.temperatureF }}</td>
+      <td>{{ forecast.summary }}</td>
+    </tr>
+  </tbody>
+</table>
+<!--<table *ngIf="solidTireComfort">-->
+<table *ngIf="solidTireComfort">
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Rimsize</th>
+      <th>Weight</th>
+      <th>mm +-2%</th>
+      <th>Width</th>
+      <th>Loadbearing</th>
+      <th>Steering</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let x of solidTireComfort">
+      <td>{{ x.size }}</td>
+      <td>{{ x.rimsize }}</td>
+      <td>{{ x.weight }}</td>
+      <td>{{ x.mm }}</td>
+      <td>{{ x.width }}</td>
+      <td>{{ x.loadBearing }}</td>
+      <td>{{ x.steering }}</td>
+    </tr>
+  </tbody>
 </table>

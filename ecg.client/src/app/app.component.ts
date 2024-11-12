@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { SolidTireComfort } from './Models/solid-tire-comfort'
 
 interface WeatherForecast {
   date: string;
@@ -15,17 +16,30 @@ interface WeatherForecast {
 })
 export class AppComponent implements OnInit {
   public forecasts: WeatherForecast[] = [];
+  public solidTireComfort: SolidTireComfort[] = [];
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.getForecasts();
+    this.getSolidTireComfort();
   }
 
   getForecasts() {
-    this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
+    this.http.get<WeatherForecast[]>('/api/weatherforecast/GetWeatherForecast').subscribe(
       (result) => {
         this.forecasts = result;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  getSolidTireComfort() {
+    this.http.get<SolidTireComfort[]>('/api/weatherforecast/GetSolidTireComfort').subscribe(
+      (result) => {
+        this.solidTireComfort = result;
       },
       (error) => {
         console.error(error);
