@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   }
 
   getForecasts() {
-    this.http.get<WeatherForecast[]>('/api/weatherforecast/GetWeatherForecast').subscribe(
+    this.http.get<WeatherForecast[]>('/api/solidTireComfort/GetWeatherForecast').subscribe(
       (result) => {
         this.forecasts = result;
       },
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
   }
 
   getSolidTireComfort() {
-    this.http.get<SolidTireComfort[]>('/api/weatherforecast/GetSolidTireComfort').subscribe(
+    this.http.get<SolidTireComfort[]>('/api/solidTireComfort/GetSolidTireComfort').subscribe(
       (result) => {
         this.solidTireComfort = result;
       },

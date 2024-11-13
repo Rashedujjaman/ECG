@@ -3,8 +3,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ECG.Server.Data
 {
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
+    public class ApplicationDbContext : DbContext
     {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
+
         public DbSet<SolidTireComfort> SolidTireComfort { get; set; }
     }
 }

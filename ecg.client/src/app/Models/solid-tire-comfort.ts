@@ -7,4 +7,5 @@ export interface SolidTireComfort {
   width?: number;
   loadBearing?: number;
   steering?: number;
+  category?: number;
 }

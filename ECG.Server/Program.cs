@@ -1,6 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using ECG.Server.Data;
-using MySqlConnector;
+using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,20 +11,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//// Configure the database context with a connection string.
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//    options.UseMySql(
-//        builder.Configuration.GetConnectionString("DefaultConnection"),
-//        new MariaDbServerVersion(new Version(10, 4, 32))
-//    ));
 
+// Configure EF Core with MySQL/MariaDB using `ApplicationDbContext`.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    var connection = new MySqlConnection(connectionString);
-    options.UseMySql(
-        connection, ServerVersion.AutoDetect(connection));
+    var connectionString = builder.Configuration.GetConnectionString("Default");
+    var serverVersion = ServerVersion.AutoDetect(connectionString);
+    options.UseMySql(connectionString, serverVersion);
 });
+
+
 
 var app = builder.Build();
 

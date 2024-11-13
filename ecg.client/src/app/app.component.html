@@ -1,31 +1,14 @@
-<h1 id="tableLabel">Weather forecast</h1>
+<h1 id="tableLabel">Solid Tire Comfort</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>This component demonstrates fetching data from the server and create table dynamically.</p>
 
-<p *ngIf="!forecasts"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
+<!--<p *ngIf="!forecasts"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>-->
 
-<table *ngIf="forecasts">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
-    </tr>
-  </tbody>
-</table>
 <!--<table *ngIf="solidTireComfort">-->
 <table *ngIf="solidTireComfort">
   <thead>
     <tr>
+      <th>Rim</th>
       <th>Size</th>
       <th>Rimsize</th>
       <th>Weight</th>
@@ -37,6 +20,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let x of solidTireComfort">
+      <td>{{x.category}}</td>
       <td>{{ x.size }}</td>
       <td>{{ x.rimsize }}</td>
       <td>{{ x.weight }}</td>
