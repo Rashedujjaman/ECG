@@ -1,4 +1,4 @@
-export interface SolidTireComfort {
+export interface Tyre {
   id: number;
   size?: string;
   rimsize?: string;

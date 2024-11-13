@@ -1,6 +1,6 @@
 ﻿namespace ECG.Server.Models
 {
-    public class SolidTireComfort
+    public class SolidTyreComfort
     {
         public int Id { get; set; }
         public string? Size { get; set; }

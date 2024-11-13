@@ -1,0 +1,36 @@
+<h1 id="tableLabel">Solid Tyre Comfort</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">Ø Rim</th>
+      <th rowspan="2">Size</th>
+      <th rowspan="2">Rimsize</th>
+      <th rowspan="2">Weight kg±2%</th>
+      <th colspan="2">Sizes ±2%</th>
+      <th colspan="2">Speed 25 km/H max</th>
+    </tr>
+    <tr>
+      <th>mm ±2%</th>
+      <th>Width ±2%</th>
+      <th>Load Bearing</th>
+      <th>Steering</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let category of groupedData">
+      <tr *ngFor="let item of category.items; let i = index">
+        <!-- Only render the category cell in the first row of the group -->
+        <td *ngIf="i === 0" [attr.rowspan]="category.items.length">{{ category.category }}</td>
+        <td>{{ item.size }}</td>
+        <td>{{ item.rimsize }}</td>
+        <td>{{ item.weight }}</td>
+        <td>{{ item.mm }}</td>
+        <td>{{ item.width }}</td>
+        <td>{{ item.loadBearing }}</td>
+        <td>{{ item.steering }}</td>
+      </tr>
+    </ng-container>
+  </tbody>
+
+</table>
