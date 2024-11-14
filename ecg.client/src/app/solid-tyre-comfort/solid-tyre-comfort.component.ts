@@ -13,6 +13,11 @@ export class SolidTyreComfortComponent implements OnInit {
   public solidTyreComfort: Tyre[] = [];
   public groupedData: any[] = [];
 
+  //table data
+  title1: string = 'Solid Tyres';
+  title2: string = 'Comfort';
+  imageUrl: string = 'assets/images/solid-tyre-comfort.png';
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {

@@ -1,17 +1,51 @@
 <section class="slider">
-  SLIDER
+  <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets/images/banner01.jpg" class="d-block w-100" alt="Slide 1">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/banner02.jpg" class="d-block w-100" alt="Slide 2">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/banner03.jpg" class="d-block w-100" alt="Slide 3">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </section>
 
-<section>
-  <div class="table-container col-md-12 d-flex">
-    <div class="col-md-6">
-      <solid-tyre-comfort></solid-tyre-comfort>
-    </div>
-    <div class="col-md-6">
-      <solid-tyre-smart></solid-tyre-smart>
+
+
+<section class="tables-section">
+  <div>
+    <!--<div class="row gx-4 gy-4">-->
+    <div class="row">
+      <!-- Solid Tyre Comfort Table -->
+      <div class="col-lg-6 col-md-12 table-container">
+        <solid-tyre-comfort></solid-tyre-comfort>
+      </div>
+
+      <!-- Solid Tyre Smart Table -->
+      <div class="col-lg-6 col-md-12 table-container">
+        <solid-tyre-smart></solid-tyre-smart>
+      </div>
     </div>
   </div>
 </section>
+
 
 
 

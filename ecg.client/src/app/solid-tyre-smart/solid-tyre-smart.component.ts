@@ -13,6 +13,10 @@ export class SolidTyreSmartComponent implements OnInit {
   public solidTyreSmart: Tyre[] = [];
   public groupedData: any[] = [];
 
+  title1: string = 'Solid Tyres';
+  title2: string = 'Smart';
+  imageUrl: string = 'assets/images/solid-tyre-smart.png';
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {

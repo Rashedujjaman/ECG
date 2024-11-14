@@ -1,4 +1,12 @@
-<h1 id="tableLabel">Solid Tyre Comfort</h1>
+<div class="table-upper-header">
+  <div class="model-title-container">
+    <h5>{{title1}}</h5>
+    <h1>{{title2}}</h1>
+  </div>
+  <div class="model-image-container">
+    <img [src]="imageUrl" class="model-image" />
+  </div>
+</div>
 
 <table>
   <thead>
@@ -17,6 +25,7 @@
       <th>Steering</th>
     </tr>
   </thead>
+
   <tbody>
     <ng-container *ngFor="let category of groupedData">
       <tr *ngFor="let item of category.items; let i = index">

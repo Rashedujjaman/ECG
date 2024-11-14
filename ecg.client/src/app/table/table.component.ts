@@ -7,5 +7,9 @@ import { Component, Input } from '@angular/core';
 
 export class TableComponent {
   @Input() groupedData: any[] = [];
+  @Input() title1: string = '';
+  @Input() title2: string = '';
+  @Input() imageUrl: string = '';
+
   title = 'table';
 }
