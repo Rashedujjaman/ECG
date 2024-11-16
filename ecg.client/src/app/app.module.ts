@@ -8,20 +8,28 @@ import { SolidTyreComfortComponent } from './solid-tyre-comfort/solid-tyre-comfo
 import { SolidTyreSmartComponent } from './solid-tyre-smart/solid-tyre-smart.component';
 import { TableComponent } from './table/table.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {NavbarComponent} from './navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { Router, RouterOutlet, RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AboutComponent } from './about/about.component';
+import { MilestoneComponent } from './milestone/milestone.component';
+import { QualityAssuranceComponent } from './quality-assurance/quality-assurance.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    FooterComponent,
     DashboardComponent,
     SolidTyreComfortComponent,
     SolidTyreSmartComponent,
-    TableComponent
+    TableComponent, AboutComponent,
+    MilestoneComponent, 
   ],
   imports: [
     BrowserModule, HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule, FontAwesomeModule, RouterOutlet, RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
