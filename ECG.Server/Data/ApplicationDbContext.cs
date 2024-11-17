@@ -11,5 +11,6 @@ namespace ECG.Server.Data
 
         public DbSet<SolidTyreComfort> SolidTyreComfort { get; set; }
         public DbSet<SolidTyreSmart> SolidTyreSmart { get; set; }
+        public DbSet<Enquiry> Enquiry { get; set; }
     }
 }

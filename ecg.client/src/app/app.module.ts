@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AboutComponent } from './about/about.component';
 import { MilestoneComponent } from './milestone/milestone.component';
 import { QualityAssuranceComponent } from './quality-assurance/quality-assurance.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -25,11 +27,13 @@ import { QualityAssuranceComponent } from './quality-assurance/quality-assurance
     SolidTyreComfortComponent,
     SolidTyreSmartComponent,
     TableComponent, AboutComponent,
-    MilestoneComponent, 
+    MilestoneComponent, ContactComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
-    AppRoutingModule, FontAwesomeModule, RouterOutlet, RouterModule
+    AppRoutingModule, FontAwesomeModule,
+    RouterOutlet, RouterModule,
+    FormsModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

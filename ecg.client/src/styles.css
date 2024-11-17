@@ -195,6 +195,22 @@ table {
   }
 }
 
+/* Contact Us*/
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-left: 1px solid #ddd;
+  padding: 0 30px;
+/*  background: green;*/
+}
+
+.form-gp{
+    width: 80%;
+/*    background: blue;*/
+}
+
 
 /* Footer */
 .footer-container {
