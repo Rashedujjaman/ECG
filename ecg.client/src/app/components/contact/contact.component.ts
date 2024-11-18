@@ -47,6 +47,7 @@ export class ContactComponent implements OnInit {
         next: () => {
           this.enquiryResponse = 'Your enquiry was submitted successfully!';
           this.isLoading = false;
+          alert('Enquiry submitted successfully. You will be contacted Soon')
           this.enquiryForm.reset();
         },
         error: (error: HttpErrorResponse) => {

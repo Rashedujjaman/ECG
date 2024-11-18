@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AboutComponent } from './about/about.component';
-import { MilestoneComponent } from './milestone/milestone.component';
-import { ContactComponent } from './contact/contact.component';
-import { QualityAssuranceComponent } from './quality-assurance/quality-assurance.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AboutComponent } from './components/about/about.component';
+import { MilestoneComponent } from './components/milestone/milestone.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { QualityAssuranceComponent } from './components/quality-assurance/quality-assurance.component';
+import { SettingComponent } from './components/setting/setting.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
     path: 'qa',
     component: QualityAssuranceComponent,
     title: 'Quality Assurance'
+  },
+  {
+    path: 'setting',
+    component: SettingComponent,
+    title: 'Setting'
   },
 
 ];

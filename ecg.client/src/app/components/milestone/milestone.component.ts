@@ -1,0 +1,102 @@
+import { Component, OnInit } from '@angular/core';
+import { MilestoneService } from '../../services/milestone-service';
+import { DomSanitizer } from '@angular/platform-browser';
+import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf';
+
+
+
+//import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
+
+@Component({
+  selector: 'app-milestone',
+  templateUrl: './milestone.component.html',
+  //styleUrls: ['./milestone.component.css'],
+})
+
+export class MilestoneComponent implements OnInit {
+  milestones: any[] = [];
+  pdfPreviews: { [key: number]: string } = {};
+
+  bannerImageUrl = 'assets/images/banner04.png';
+
+  //faFacebook = faFacebook;
+  //faInstagram = faInstagram;
+  //faTwitter = faTwitter;
+
+  constructor(private milestoneService: MilestoneService, private sanitizer: DomSanitizer) {}
+
+  ngOnInit(): void {
+    this.loadMilestones();
+  }
+
+
+  // Method to load milestones from the backend
+  loadMilestones(): void {
+    this.milestoneService.getMilestones().subscribe(
+      (data) => {
+        this.milestones = data;
+        this.generatePreviews();
+      },
+      (error) => {
+        alert('Failed to load milestones.');
+        console.error(error);
+      }
+    );
+  }
+
+  async generatePreviews(): Promise<void> {
+    for (const milestone of this.milestones) {
+      for (const file of milestone.files) {
+        const blob = await this.milestoneService.downloadFile(file.id).toPromise();
+        if (blob) {
+          this.createPdfPreview(blob, file.id);
+        }
+
+      }
+    }
+  }
+
+  async createPdfPreview(blob: Blob, fileId: number): Promise<void> {
+
+    //pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'assets/pdf.worker.min.mjs';
+
+
+    const pdfData = await blob.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+    const page = await pdf.getPage(1);
+    const viewport = page.getViewport({ scale: 1 });
+
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+
+    const context = canvas.getContext('2d');
+    const renderContext = {
+      canvasContext: context!,
+      viewport: viewport,
+    };
+
+    await page.render(renderContext).promise;
+    const previewUrl = canvas.toDataURL();
+    this.pdfPreviews[fileId] = previewUrl;
+  }
+
+  // Method to download a file
+  downloadFile(fileId: number, fileName: string): void {
+    this.milestoneService.downloadFile(fileId).subscribe(
+      (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+        a.click();
+        window.URL.revokeObjectURL(url);
+      },
+      (error) => {
+        alert('Error while downloading the file.');
+        console.error(error);
+      }
+    );
+  }
+}

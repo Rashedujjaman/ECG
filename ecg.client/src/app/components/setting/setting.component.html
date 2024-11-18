@@ -1,0 +1,91 @@
+<section class="py-5 bg-info">
+  <div class="container">
+    <div class="row g-5">
+      <!--<div class="col-md-6">
+        <h2 class="mb-4">Add Product</h2>-->
+        <!-- Form to add a new product -->
+        <!--<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="size" class="form-label">Size</label>
+            <input type="text" id="size" formControlName="size" class="form-control" placeholder="Enter Size">
+            <div *ngIf="milestoneForm.controls['size'].invalid && milestoneForm.controls['size'].touched" class="text-danger">
+              Size is required.
+            </div>
+          </div>
+          <div class="mb-3 ">
+            <label for="rimsize" class="form-label">Rimsize</label>
+            <input type="text" id="rimsize" formControlName="rimsize" class="form-control" placeholder="Enter Rimsize">
+            <div *ngIf="milestoneForm.controls['rimsize'].invalid && milestoneForm.controls['rimsize'].touched" class="text-danger">
+              Rimsize is required.
+            </div>
+          </div>
+          <div class="mb-3 ">
+            <label for="weight" class="form-label">Weight</label>
+            <input type="text" id="weight" formControlName="weight" class="form-control" placeholder="Enter Weight">
+            <div *ngIf="milestoneForm.controls['weight'].invalid && milestoneForm.controls['weight'].touched" class="text-danger">
+              Weight is required.
+            </div>
+          </div>
+          <div class="mb-3 ">
+            <label for="mm" class="form-label">MM</label>
+            <input type="text" id="mm" formControlName="mm" class="form-control" placeholder="Enter MM">
+            <div *ngIf="milestoneForm.controls['mm'].invalid && milestoneForm.controls['mm'].touched" class="text-danger">
+              MM is required.
+            </div>
+          </div>
+          <div class="mb-3 ">
+            <label for="width" class="form-label">Width</label>
+            <input type="text" id="width" formControlName="width" class="form-control" placeholder="Enter Width">
+            <div *ngIf="milestoneForm.controls['width'].invalid && milestoneForm.controls['width'].touched" class="text-danger">
+              Width is required.
+            </div>
+          </div>
+          <div class="mb-3 ">
+            <label for="loadBearing" class="form-label">loadBearing</label>
+            <input type="text" id="loadBearing" formControlName="loadBearing" class="form-control" placeholder="Enter LoadBearing">
+            <div *ngIf="milestoneForm.controls['loadBearing'].invalid && milestoneForm.controls['loadBearing'].touched" class="text-danger">
+              LoadBearing is required.
+            </div>
+          </div>
+          <div class="mb-3 ">
+            <label for="steering" class="form-label">Steering</label>
+            <input type="text" id="steering" formControlName="steering" class="form-control" placeholder="Enter Steering">
+            <div *ngIf="milestoneForm.controls['steering'].invalid && milestoneForm.controls['steering'].touched" class="text-danger">
+              Steering is required.
+            </div>
+          </div>-->
+
+          <!--<div class="mb-3 ">
+          <label for="files" class="form-label">Select PDF Files</label>
+          <input type="file" id="files" class="form-control" (change)="onFileSelected($event)" multiple accept=".pdf">
+        </div>-->
+
+          <!--<button type="submit" class="btn btn-primary mb-5" [disabled]="productForm.invalid">Add Product</button>
+        </form>
+      </div>-->
+
+      <div class="col-md-6">
+        <h2 class="mb-4">Add Milestone</h2>
+
+        <!-- Form to add a new milestone -->
+        <form [formGroup]="milestoneForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3 ">
+            <label for="title" class="form-label">Milestone Title</label>
+            <input type="text" id="title" formControlName="title" class="form-control" placeholder="Enter milestone title">
+            <div *ngIf="milestoneForm.controls['title'].invalid && milestoneForm.controls['title'].touched" class="text-danger">
+              Title is required.
+            </div>
+          </div>
+
+          <div class="mb-3 ">
+            <label for="files" class="form-label">Select PDF Files</label>
+            <input type="file" id="files" class="form-control" (change)="onFileSelected($event)" multiple accept=".pdf">
+          </div>
+
+          <button type="submit" class="btn btn-primary mb-5" [disabled]="milestoneForm.invalid">Add Milestone</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+

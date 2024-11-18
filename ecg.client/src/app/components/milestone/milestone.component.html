@@ -1,0 +1,29 @@
+<section>
+  <div class="banner">
+    <img [src] ="bannerImageUrl" alt="Milestone Image" class="d-block w-100" />
+  </div>
+</section>
+
+<section class="milestone-container py-5">
+  <div class="container">
+    <div *ngIf="milestones.length > 0">
+      <h3 class="mb-5 text-center">Milestones</h3>
+      <div *ngFor="let milestone of milestones" class="mb-4">
+        <h5>{{ milestone.title }}</h5>
+        <div class="d-flex flex-wrap mt-2">
+          <div *ngFor="let file of milestone.files" class="card me-5 mb-5" style="width: 300px;">
+            <div class="card-body text-center">
+              <img *ngIf="pdfPreviews[file.id]"
+                   [src]="pdfPreviews[file.id]"
+                   alt="PDF Preview"
+                   class="img-fluid mb-2"
+                   style="cursor: pointer;"
+                   (click)="downloadFile(file.id, file.fileName)" />
+              <div *ngIf="!pdfPreviews[file.id]">Loading Preview...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

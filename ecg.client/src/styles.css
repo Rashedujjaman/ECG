@@ -63,7 +63,7 @@ p {
   text-align: justify;
 }
 
-.img-fluid {
+.reactive-border {
   max-height: 300px;
   width: 100%;
   height: auto;
@@ -71,11 +71,10 @@ p {
   border-top-right-radius: 30px;
   border-bottom-left-radius: 30px;
   object-fit: fill;
-
 }
 
 
-  .img-fluid:hover {
+  .reactive-border:hover {
     border-top-left-radius: 30px;
     border-bottom-right-radius: 30px;
     border-top-right-radius: 0;
@@ -112,7 +111,7 @@ p {
 .banner{
     width: 100%;
     height: auto;
-    background: green;
+/*    background: green;*/
 }
 
 /* Body Container*/
