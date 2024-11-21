@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Tyre } from '../../../models/tyre';
+import { Tyre } from '../../../interfaces/tyre';
 import { TableComponent } from '../../table/table.component';
 
 @Component({

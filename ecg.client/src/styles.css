@@ -106,13 +106,28 @@ p {
   font-size: 300%;
 }
 
+/* Slider container */
+/*.slider {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;*/ /* Prevent images from overflowing */
+/*}*/
+
+/* Images within the slider */
+/*.slider-image {
+  width: 100%;*/ /* Make the image span the width of the slider */
+  /*height: 100%;*/ /* Ensure the image fills the slider height */
+  /*object-fit: cover;*/ /* Ensures the image covers the area while maintaining aspect ratio */
+/*}*/
+
 
 /*Banner*/
-.banner{
+/*.banner{
     width: 100%;
-    height: auto;
+    height: 400px;*/
+    
 /*    background: green;*/
-}
+/*}*/
 
 /* Body Container*/
 

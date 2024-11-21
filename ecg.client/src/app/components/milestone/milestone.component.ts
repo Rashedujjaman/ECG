@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MilestoneService } from '../../services/milestone-service';
+import { MilestoneService } from '../../services/milestone.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf';
 

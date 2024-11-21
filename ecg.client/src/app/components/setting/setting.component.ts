@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MilestoneService } from '../../services/milestone-service';
+import { MilestoneService } from '../../services/milestone.service';
 
 @Component({
 
