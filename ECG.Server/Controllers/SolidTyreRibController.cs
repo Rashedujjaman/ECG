@@ -6,28 +6,25 @@ namespace ECG.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class SolidTyreSmartController: ControllerBase
+    public class SolidTyreRibController : ControllerBase
     {
-        private readonly ILogger<SolidTyreComfortController> _logger;
         private readonly ApplicationDbContext _dbContext;
 
-        public SolidTyreSmartController(ILogger<SolidTyreComfortController> logger, ApplicationDbContext dbContext)
+        public SolidTyreRibController(ApplicationDbContext dbContext)
         {
-            _logger = logger;
             _dbContext = dbContext;
         }
 
-        [HttpGet("GetSolidTyreSmart")]
-        public ActionResult<IEnumerable<SolidTyreComfort>> GetSolidTyreComfort()
+        [HttpGet("GetSolidTyreRib")]
+        public ActionResult<IEnumerable<SolidTyreRib>> GetSolidTyreRib()
         {
             try
             {
-                var results = _dbContext.SolidTyreSmart.ToList();
+                var results = _dbContext.SolidTyreRib.ToList();
                 return Ok(results);
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message);
                 return BadRequest(e.Message);
             }
         }

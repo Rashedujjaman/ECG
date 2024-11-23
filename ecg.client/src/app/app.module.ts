@@ -7,8 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SolidTyreComfortComponent } from './components/dashboard/solid-tyre-comfort/solid-tyre-comfort.component';
 import { SolidTyreSmartComponent } from './components/dashboard/solid-tyre-smart/solid-tyre-smart.component';
+import { SolidTyreRibComponent } from './components/dashboard/solid-tyre-rib/solid-tyre-rib.component';
 import { TableComponent } from './components/table/table.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProductComponent } from './components/product/product.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { Router, RouterOutlet, RouterModule } from '@angular/router';
@@ -18,6 +20,7 @@ import { MilestoneComponent } from './components/milestone/milestone.component';
 import { QualityAssuranceComponent } from './components/quality-assurance/quality-assurance.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { SettingComponent } from './components/setting/setting.component';
+import { CompoundComponent } from './components/compound/compound.component';
 
 @NgModule({
   declarations: [
@@ -25,11 +28,14 @@ import { SettingComponent } from './components/setting/setting.component';
     NavbarComponent,
     FooterComponent,
     DashboardComponent,
+    ProductComponent,
     SolidTyreComfortComponent,
     SolidTyreSmartComponent,
+    SolidTyreRibComponent,
     TableComponent, AboutComponent,
     MilestoneComponent, ContactComponent,
-    SettingComponent, QualityAssuranceComponent
+    SettingComponent, QualityAssuranceComponent,
+    CompoundComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

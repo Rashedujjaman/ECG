@@ -1,10 +1,10 @@
 <section class="py-5 bg-info">
   <div class="container">
     <div class="row g-5">
-      <div class="col-md-6">
-        <h2 class="mb-4">Add Product</h2>
+      <!--<div class="col-md-6">
+        <h2 class="mb-4">Add Product</h2>-->
          <!--Form to add a new product--> 
-        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <!--<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
           <div class="mb-3">
             <label for="size" class="form-label">Size</label>
             <input type="text" id="size" formControlName="size" class="form-control" placeholder="Enter Size">
@@ -62,7 +62,7 @@
 
           <button type="submit" class="btn btn-primary mb-5" [disabled]="productForm.invalid">Add Product</button>
         </form>
-      </div>
+      </div>-->
 
       <div class="col-md-6">
         <h2 class="mb-4">Add Milestone</h2>
@@ -79,7 +79,7 @@
 
           <div class="mb-3 ">
             <label for="files" class="form-label">Select PDF Files</label>
-            <input type="file" id="files" class="form-control" (change)="onFileSelected($event)" multiple accept=".pdf">
+            <input type="file" #fileInput id="files" class="form-control" (change)="onFileSelected($event)" multiple accept=".pdf">
           </div>
 
           <button type="submit" class="btn btn-primary mb-5" [disabled]="milestoneForm.invalid">Add Milestone</button>

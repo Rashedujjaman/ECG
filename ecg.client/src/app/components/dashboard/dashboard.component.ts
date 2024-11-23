@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  // Images
+  certificationImage: string = 'assets/images/certification_image.webp';
+  featureImage: string = 'assets/images/tyre.png';
 
   constructor() { }
 

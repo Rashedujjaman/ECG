@@ -19,6 +19,7 @@ namespace ECG.Server.Controllers
         [HttpPost("AddMilestone")]
         public async Task<IActionResult> AddMilestone([FromForm] string title, [FromForm] IFormFileCollection files)
         {
+            using var transaction = await _dbContext.Database.BeginTransactionAsync();
             try
             {
                 // Create a new milestone
@@ -46,10 +47,12 @@ namespace ECG.Server.Controllers
                 }
 
                 await _dbContext.SaveChangesAsync();
+                await transaction.CommitAsync();
                 return Ok(new { message = "Milestone and files added successfully!" });
             }
             catch (Exception ex)
             {
+                await transaction.RollbackAsync();
                 return BadRequest(new { error = ex.Message });
             }
         }

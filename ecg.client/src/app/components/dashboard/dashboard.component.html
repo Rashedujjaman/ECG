@@ -1,51 +1,82 @@
-<section class="slider">
-  <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<section class="dashboard pb-5">
+  <section class="slider">
+    <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+        <!--<button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="assets/images/banner01.png" class="block-d w-100" alt="Slide 1">
+        </div>
+        <!--<div class="carousel-item">
+          <img src="assets/images/banner04.png" class="block-d w-100" alt="Slide 2">
+        </div>
+        <div class="carousel-item">
+          <img src="assets/images/banner03.jpg" class="block-d w-100" alt="Slide 3">
+        </div>-->
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="assets/images/banner01.png" class="block-d w-100" alt="Slide 1">
+  </section>
+
+  <section class="info-section container mt-5">
+    <!-- Introduction Section -->
+    <div class="mb-5 d-flex justify-content-between">
+      <div class="">
+        <!--<h3 class="mb-4">About Comfort Green Tyre</h3>-->
+        <p><strong>S</strong>olid tyres branded <strong class="highlight">"COMFORT"</strong> and <strong class="highlight">"SMART"</strong> are produced at <strong class="highlight">COMFORT GREEN TYRE</strong> plant in Malaysia. We employ the most sophisticated and technologically advanced machineries to produce solid tyres with radial matrices in six segments.</p>
+        <p>For solid  tyres,  <strong class="highlight">COMFORT  GREEN  TYRE</strong>  uses  own  compounds  made  with  the  best  chemicals  supplied  by  the  well-recognized  worldwide  manufacturers. In such a way, through physical-mechanical tests, we can assure a <strong>constant quality over time</strong>, which places <strong class="highlight">COMFORT GREEN TYRE</strong> solid tyres at the top of the market.</p>
       </div>
-      <div class="carousel-item">
-        <img src="assets/images/banner04.png" class="block-d w-100" alt="Slide 2">
+      <!--<div class="">
+        <img [src]="certificationImage" alt="Retreading Process" class="img-fluid" style="height: 200px; width: 200px">
+      </div>-->
+    </div>
+
+    <!-- Features Section -->
+    <div class="mb-5">
+      <h3 class="mb-4">Key Features</h3>
+      <div class="d-flex justify-content-between justified-text">
+        <ul>
+          <li class="mb-3">
+            <strong class="highlight">COMFORT:</strong> COMFORT solid tyres have a tread pattern designed for any type of forklift, usage, floor and even for high load applications. They are available in two versions, the "TRADITIONAL" one in black colour and the "NO MARKING" one in light colour. The tread compound can also be in anti-oil, antistatic and anti-cut versions. COMFORT solid tyres can be produced in "DUAL-COMPOUND" version for static or very slow speed applications.
+            <button type="button" class="btn btn-link" routerLink="/product">Specification</button>
+          </li>
+          <li>
+            <strong class="highlight"> SMART:</strong> SMART solid tyres have been specifically designed to be used on electric forklifts, as they assure high smoothness thanks to their innovative "full profile" tread pattern smoothness that reduce the energy consumption of batteries for a longer charge of the forklift. By this brand of solid tyres, Comfort Green Tyre also introduced a new rubber compound for tread, having higher mechanical features. They are available in two versions, the "TRADITIONAL" one in black colour and the "NO MARKING" one in light colour. The tread compound is also available in anti-oil, antistatic and anti-cut versions.
+            <button type="button" class="btn btn-link" routerLink="/product">Specification</button>
+          </li>
+        </ul>
+        <img [src]="featureImage" alt="Retreading Process" class="img-fluid ms-5 rounded" style="height: 200px; width:300px">
       </div>
-      <div class="carousel-item">
-        <img src="assets/images/banner03.jpg" class="block-d w-100" alt="Slide 3">
+      <span>
+        <strong>Note:</strong> The model for quick coupling rims called "FLASH" is available for both types of solid tyres
+        <strong class="highlight">"COMFORT"</strong> and <strong class="highlight">"SMART"</strong>.
+      </span>
+    </div>
+
+    <!-- Certifications Section -->
+    <div class="d-flex justify-content-between">
+      <div class="">
+        <p class="mb-2"><strong class="highlight">"COMFORT" AND "SMART"</strong><b> SOLID  TYRES  are  produced in compliance with the following certifications:</b></p>
+        <ul>
+          <li>UNI EN ISO 9001:2000 certified system</li>
+          <li>E.T.R.T.O. Specifications</li>
+          <li>ISO 2883 for antistatic versions</li>
+          <li>UNI ISO 1074 for vehicle steadiness</li>
+        </ul>
+      </div>
+      <div class="">
+        <img [src]="certificationImage" alt="Retreading Process" class="img-fluid rounded" style="height: 200px; width:200px">
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
+  </section>
 </section>
-
-
-
-<section class="tables-section">
-  <div class="container-fluid">
-    <!--<div class="row gx-4 gy-4">-->
-    <div class="row">
-      <!-- Solid Tyre Comfort Table -->
-      <div class="col-lg-6 col-md-12 table-container">
-        <solid-tyre-comfort></solid-tyre-comfort>
-      </div>
-
-      <!-- Solid Tyre Smart Table -->
-      <div class="col-lg-6 col-md-12 table-container">
-        <solid-tyre-smart></solid-tyre-smart>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-

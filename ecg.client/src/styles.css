@@ -18,6 +18,17 @@ body {
   padding: 10px 30px;
 }
 
+.logo-container {
+  height: 60px;
+  width: 60px;
+  background: white;
+}
+
+.logo{
+  object-fit: fill;
+  height: 100%;
+}
+
 .navbar-nav {
   gap: 30px;
 }
@@ -135,12 +146,28 @@ p {
   margin: 0 2%;
 }*/
 
+/* Dashboard */
+.dashboard {
+  background-color: #e5f9e2;
+}
+
+.justified-text{
+  text-align: justify;
+}
+
+.highlight {
+  color: #2fcca7;
+}
+
+.info-section p{
+  color: black;
+}
 
 /* For the table header and image alignment */
 
 .table-container {
   overflow-x: auto;
-  padding: 20px;
+  padding-bottom: 20px;
 }
 
 .table-upper-header {
@@ -175,6 +202,12 @@ p {
 
 
 /* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
 th {
   padding: 0.75rem;
   border: 1px solid #fff;
@@ -188,11 +221,7 @@ td {
   text-align: center;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-}
+
 
 /* Responsive layout adjustments */
 @media (max-width: 767px) {
@@ -223,6 +252,75 @@ table {
 .form-gp{
     width: 80%;
 /*    background: blue;*/
+}
+
+/* compound*/
+.compound-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0;
+  background: linear-gradient(to right, #D4EDDA, #D4EDDA, #008f66);
+  clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
+}
+
+.compound-title{
+  width: 600px;
+  text-align: justify;
+}
+
+.compounds{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.compound {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.compound-alias {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.compound-1 {
+  background-color: #3f51b5;
+  color: #fff;
+}
+.compound-2 {
+  color: #000;
+  border: 3px solid #000;
+  font-size: 30px;
+}
+.compound-3 {
+  background-color: #ffd800;
+}
+.compound-4 {
+  background-color: #777;
+  color:#fff;
+}
+.compound-5 {
+  background-color: #00b45a;
+  color: #fff;
+}
+
+.compound-name{
+  display: flex;
+  flex-wrap: wrap;
+  width: 60px;
+  font-size: 12px;
+/*  background: red;*/
 }
 
 

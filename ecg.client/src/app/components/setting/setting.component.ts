@@ -11,7 +11,7 @@ import { MilestoneService } from '../../services/milestone.service';
 export class SettingComponent implements OnInit {
   milestoneForm: FormGroup;
   productForm: FormGroup;
-  selectedFiles!: FileList;
+  selectedFiles: File[]=[];
 
   constructor(private fb: FormBuilder, private milestoneService: MilestoneService) {
     this.milestoneForm = this.fb.group({
@@ -38,6 +38,27 @@ export class SettingComponent implements OnInit {
   onFileSelected(event: any): void {
     this.selectedFiles = event.target.files;
   }
+  //onFileSelected(event: any): void {
+  //  this.selectedFiles = [];
+  //  const files = event.target.files;
+  //  const maxSize = 1024 * 1024 * 1; //1 MB
+
+  //  // Loop through each selected file
+  //  for (let i = 0; i < files.length; i++) {
+  //    const file = files[i];
+
+  //    // Check if file size exceeds the limit
+  //    if (file.size > maxSize) {
+  //      // Display an error message
+  //      alert(`Error: File "${file.name}" exceeds the maximum size of ${maxSize / (1024 * 1024)} MB. Please select a smaller file.`);
+  //      // Optionally, prevent adding the oversized file to the selectedFiles array
+  //      continue;
+  //    }
+
+  //    // If size is valid, add the file to the selectedFiles array
+  //    this.selectedFiles.push(file);
+  //  }
+  //}
 
   // Method to submit the milestone form
   onSubmit(): void {
@@ -59,7 +80,12 @@ export class SettingComponent implements OnInit {
       (response) => {
         alert(response.message);
         this.milestoneForm.reset();
-        //this.loadMilestones();
+        this.selectedFiles = [];
+        // Clear the file input
+        const fileInput = document.getElementById('files') as HTMLInputElement;
+        if (fileInput) {
+          fileInput.value = '';
+        }
       },
       (error) => {
         alert('Error while uploading milestone and files.');
@@ -67,7 +93,6 @@ export class SettingComponent implements OnInit {
       }
     );
   }
-
 }
 
 

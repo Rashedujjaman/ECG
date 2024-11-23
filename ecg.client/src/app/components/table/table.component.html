@@ -33,7 +33,7 @@
         <td *ngIf="i === 0" [attr.rowspan]="category.items.length">{{ category.category }}</td>
         <td>{{ item.size }}</td>
         <td>{{ item.rimsize }}</td>
-        <td>{{ item.weight }}</td>
+        <td>{{ item.weight }} KG</td>
         <td>{{ item.mm }}</td>
         <td>{{ item.width }}</td>
         <td>{{ item.loadBearing }}</td>
@@ -41,5 +41,4 @@
       </tr>
     </ng-container>
   </tbody>
-
 </table>
