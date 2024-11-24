@@ -3,14 +3,9 @@ import { MilestoneService } from '../../services/milestone.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf';
 
-
-
-//import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
-
 @Component({
   selector: 'app-milestone',
   templateUrl: './milestone.component.html',
-  //styleUrls: ['./milestone.component.css'],
 })
 
 export class MilestoneComponent implements OnInit {
@@ -18,10 +13,6 @@ export class MilestoneComponent implements OnInit {
   pdfPreviews: { [key: number]: string } = {};
 
   bannerImageUrl = 'assets/images/banner04.png';
-
-  //faFacebook = faFacebook;
-  //faInstagram = faInstagram;
-  //faTwitter = faTwitter;
 
   constructor(private milestoneService: MilestoneService, private sanitizer: DomSanitizer) {}
 

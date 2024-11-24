@@ -7,6 +7,9 @@ import { MilestoneComponent } from './components/milestone/milestone.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { QualityAssuranceComponent } from './components/quality-assurance/quality-assurance.component';
 import { SettingComponent } from './components/setting/setting.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './auth/auth.guard';
+import { AdminGuard } from './auth/admin.guard';
 
 const routes: Routes = [
   {
@@ -42,7 +45,13 @@ const routes: Routes = [
   {
     path: 'setting',
     component: SettingComponent,
-    title: 'Setting'
+    title: 'Setting',
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    title: 'Loign'
   },
 
 ];

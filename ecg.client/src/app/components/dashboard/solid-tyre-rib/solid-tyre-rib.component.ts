@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Tyre } from '../../../interfaces/tyre';
+import { ProductService } from '../../../services/product.service';
 
 
 @Component({
@@ -16,14 +17,15 @@ export class SolidTyreRibComponent implements OnInit {
   title2: string = 'Rib';
   imageUrl: string = 'assets/images/solid-tyre-rib.png';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private productService: ProductService) { }
 
   ngOnInit() {
     this.getSolidTyreRib();
   }
 
   getSolidTyreRib() {
-    this.http.get<Tyre[]>('/api/solidTyreRib/GetSolidTyreRib').subscribe(
+    //this.http.get<Tyre[]>('/api/solidTyreRib/GetSolidTyreRib').subscribe(
+    this.productService.getSolidTyreRib().subscribe(
       (result) => {
         this.solidTyreRib = result;
         this.groupDataByCategory();
@@ -46,5 +48,11 @@ export class SolidTyreRibComponent implements OnInit {
     }, {} as Record<string | number, { category: string | number; items: Tyre[] }>);
 
     this.groupedData = Object.values(grouped);
+  }
+
+  // Add a single tyre to the table
+  addNewTyre(newTyre: Tyre) {
+    this.solidTyreRib.push(newTyre);
+    this.groupDataByCategory();
   }
 }

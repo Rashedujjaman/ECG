@@ -1,0 +1,108 @@
+
+<div class="container">
+  <div class="row g-5">
+    <!--Form to add a new product-->
+    <div class="col-md-4 brand-bg rounded">
+      <h2 class="my-4">Add Product</h2>
+      <div class="mb-3">
+        <label for="tyre" class="form-label">Select Tyre Model</label>
+        <select id="tyre"
+                class="form-control"
+                [(ngModel)]="selectedTyreModel"
+                (change)="onTyreModelChange()">
+          <option value="">Select Tyre Model</option>
+          <option value="STC">Solid Tyre Comfort</option>
+          <option value="STS">Solid Tyre Smart</option>
+          <option value="STR">Solid Tyre Rib</option>
+        </select>
+      </div>
+
+      <form *ngIf="selectedTyreModel" [formGroup]="productForm" (ngSubmit)="onProductSubmit()">
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <input type="number" id="category" formControlName="category" class="form-control" placeholder="Enter Category">
+          <div *ngIf="productForm.controls['category'].invalid && productForm.controls['category'].touched" class="text-danger">
+            Category is required.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="size" class="form-label">Size</label>
+          <input type="text" id="size" formControlName="size" class="form-control" placeholder="Enter Size">
+          <div *ngIf="productForm.controls['size'].invalid && productForm.controls['size'].touched" class="text-danger">
+            Size is required.
+          </div>
+        </div>
+        <div class="mb-3 ">
+          <label for="rimSize" class="form-label">Rimsize</label>
+          <input type="text" id="rimSize" formControlName="rimSize" class="form-control" placeholder="Enter Rimsize">
+          <div *ngIf="productForm.controls['rimSize'].invalid && productForm.controls['rimSize'].touched" class="text-danger">
+            Rimsize is required.
+          </div>
+        </div>
+        <div class="mb-3 ">
+          <label for="weight" class="form-label">Weight</label>
+          <input type="number" id="weight" formControlName="weight" class="form-control" placeholder="Enter Weight">
+          <div *ngIf="productForm.controls['weight'].invalid && productForm.controls['weight'].touched" class="text-danger">
+            Weight is required.
+          </div>
+        </div>
+        <div class="mb-3 ">
+          <label for="mm" class="form-label">MM</label>
+          <input type="number" id="mm" formControlName="mm" class="form-control" placeholder="Enter MM">
+          <div *ngIf="productForm.controls['mm'].invalid && productForm.controls['mm'].touched" class="text-danger">
+            MM is required.
+          </div>
+        </div>
+        <div class="mb-3 ">
+          <label for="width" class="form-label">Width</label>
+          <input type="number" id="width" formControlName="width" class="form-control" placeholder="Enter Width">
+          <div *ngIf="productForm.controls['width'].invalid && productForm.controls['width'].touched" class="text-danger">
+            Width is required.
+          </div>
+        </div>
+        <div class="mb-3 ">
+          <label for="loadBearing" class="form-label">loadBearing</label>
+          <input type="number" id="loadBearing" formControlName="loadBearing" class="form-control" placeholder="Enter LoadBearing">
+          <div *ngIf="productForm.controls['loadBearing'].invalid && productForm.controls['loadBearing'].touched" class="text-danger">
+            LoadBearing is required.
+          </div>
+        </div>
+        <div class="mb-3 ">
+          <label for="steering" class="form-label">Steering</label>
+          <input type="number" id="steering" formControlName="steering" class="form-control" placeholder="Enter Steering">
+          <div *ngIf="productForm.controls['steering'].invalid && productForm.controls['steering'].touched" class="text-danger">
+            Steering is required.
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-5" [disabled]="productForm.invalid">Add Product</button>
+      </form>
+    </div>
+
+    <!--Table-->
+    <div class="col-md-8">
+      <h2 class="my-4">View Products</h2>
+      <div class="mb-3">
+        <label for="tableView" class="form-label">Select a model to view data</label>
+        <select id="tableView"
+                class="form-control"
+                [(ngModel)]="selectedTableView">
+          <option value="">Select Table</option>
+          <option value="STC">Solid Tyre Comfort</option>
+          <option value="STS">Solid Tyre Smart</option>
+          <option value="STR">Solid Tyre Rib</option>
+        </select>
+      </div>
+      <!-- Conditional Table Rendering -->
+      <div *ngIf="selectedTableView === 'STC'">
+        <solid-tyre-comfort #solidTyreComfort></solid-tyre-comfort>
+      </div>
+      <div *ngIf="selectedTableView === 'STS'">
+        <solid-tyre-smart #solidTyreSmart></solid-tyre-smart>
+      </div>
+      <div *ngIf="selectedTableView === 'STR'">
+        <solid-tyre-rib #solidTyreRib></solid-tyre-rib>
+      </div>
+    </div>
+  </div>
+</div>

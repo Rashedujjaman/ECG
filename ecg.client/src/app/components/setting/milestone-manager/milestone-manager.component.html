@@ -1,0 +1,47 @@
+
+<div class="container">
+  <div class="row g-5">
+    <div class="col-md-4 brand-bg rounded">
+      <h2 class="my-4">Add Milestone</h2>
+      <!-- Form to add a new milestone -->
+      <form [formGroup]="milestoneForm" (ngSubmit)="onMilestoneSubmit()">
+        <div class="mb-3 ">
+          <label for="title" class="form-label">Milestone Title</label>
+          <input type="text" id="title" formControlName="title" class="form-control" placeholder="Enter milestone title">
+          <div *ngIf="milestoneForm.controls['title'].invalid && milestoneForm.controls['title'].touched" class="text-danger">
+            Title is required.
+          </div>
+        </div>
+
+        <div class="mb-3 ">
+          <label for="files" class="form-label">Select PDF Files</label>
+          <input type="file" #fileInput id="files" class="form-control" (change)="onFileSelected($event)" multiple accept=".pdf">
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-5" [disabled]="milestoneForm.invalid">Add Milestone</button>
+      </form>
+    </div>
+
+    <div class="col-md-8">
+      <div *ngIf="milestones.length > 0">
+        <h2 class="my-4">View Milestones</h2>
+        <div *ngFor="let milestone of milestones" class="mb-3">
+          <h5>{{ milestone.title }}</h5>
+          <div class="d-flex flex-wrap mt-2">
+            <div *ngFor="let file of milestone.files" class="card me-3 mb-3" style="width: 120px;">
+              <div class="card-body text-center">
+                <img *ngIf="pdfPreviews[file.id]"
+                     [src]="pdfPreviews[file.id]"
+                     alt="PDF Preview"
+                     class="img-fluid mb-2"
+                     style="cursor: pointer;" />
+                <div *ngIf="!pdfPreviews[file.id]">Loading Preview...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -324,6 +324,11 @@ td {
 }
 
 
+/* Table */
+.brand-bg {
+  background: #e5f9e2;
+}
+
 /* Footer */
 .footer-container {
   background: #333;

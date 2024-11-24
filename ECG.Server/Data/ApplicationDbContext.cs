@@ -16,6 +16,6 @@ namespace ECG.Server.Data
         public DbSet<Milestone> Milestone { get; set; }
         public DbSet<MilestoneFile> MilestoneFiles { get; set; }
         public DbSet<Compound> Compound { get; set; }
-
+        public DbSet<Admin> Admin { get; set; }
     }
 }

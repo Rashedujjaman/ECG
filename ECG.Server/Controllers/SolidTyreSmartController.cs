@@ -1,5 +1,6 @@
 ﻿using ECG.Server.Data;
 using ECG.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECG.Server.Controllers
@@ -8,12 +9,10 @@ namespace ECG.Server.Controllers
     [Route("api/[controller]")]
     public class SolidTyreSmartController: ControllerBase
     {
-        private readonly ILogger<SolidTyreComfortController> _logger;
         private readonly ApplicationDbContext _dbContext;
 
-        public SolidTyreSmartController(ILogger<SolidTyreComfortController> logger, ApplicationDbContext dbContext)
+        public SolidTyreSmartController(ApplicationDbContext dbContext)
         {
-            _logger = logger;
             _dbContext = dbContext;
         }
 
@@ -27,9 +26,27 @@ namespace ECG.Server.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e.Message);
                 return BadRequest(e.Message);
             }
         }
+
+        [Authorize]
+        [AdminOnly]
+        [HttpPost("AddSolidTyreSmart")]
+        public ActionResult AddSolidTyreSmart([FromBody] SolidTyreSmart newProduct)
+        {
+            try
+            {
+                _dbContext.SolidTyreSmart.Add(newProduct);
+                _dbContext.SaveChanges();
+                return Ok(newProduct);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
     }
 }

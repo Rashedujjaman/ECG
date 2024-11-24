@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Tyre } from '../../../interfaces/tyre';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'solid-tyre-smart',
@@ -16,14 +17,15 @@ export class SolidTyreSmartComponent implements OnInit {
   title2: string = 'Smart';
   imageUrl: string = 'assets/images/solid-tyre-smart.png';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private productService: ProductService) { }
 
   ngOnInit() {
     this.getSolidTyreSmart();
   }
 
   getSolidTyreSmart() {
-    this.http.get<Tyre[]>('/api/solidTyreSmart/GetSolidTyreSmart').subscribe(
+    //this.http.get<Tyre[]>('/api/solidTyreSmart/GetSolidTyreSmart').subscribe(
+    this.productService.getSolidTyreSmart().subscribe(
       (result) => {
         this.solidTyreSmart = result;
         this.groupDataByCategory();
@@ -48,4 +50,10 @@ export class SolidTyreSmartComponent implements OnInit {
     this.groupedData = Object.values(grouped);
   }
 
+
+  // Add a single tyre to the table
+  addNewTyre(newTyre: Tyre) {
+    this.solidTyreSmart.push(newTyre);
+    this.groupDataByCategory();
+  }
 }

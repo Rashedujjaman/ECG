@@ -2,6 +2,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,7 +23,10 @@ import { MilestoneComponent } from './components/milestone/milestone.component';
 import { QualityAssuranceComponent } from './components/quality-assurance/quality-assurance.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { SettingComponent } from './components/setting/setting.component';
+import { ProductManagerComponent } from './components/setting/product-manager/product-manager.component';
+import { MilestoneManagerComponent } from './components/setting/milestone-manager/milestone-manager.component';
 import { CompoundComponent } from './components/compound/compound.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +40,9 @@ import { CompoundComponent } from './components/compound/compound.component';
     SolidTyreRibComponent,
     TableComponent, AboutComponent,
     MilestoneComponent, ContactComponent,
-    SettingComponent, QualityAssuranceComponent,
-    CompoundComponent
+    QualityAssuranceComponent, CompoundComponent,
+    LoginComponent,
+    SettingComponent, ProductManagerComponent, MilestoneManagerComponent,
   ],
   imports: [
     BrowserModule, HttpClientModule,
@@ -43,7 +50,13 @@ import { CompoundComponent } from './components/compound/compound.component';
     RouterOutlet, RouterModule,
     FormsModule, ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
