@@ -34,4 +34,30 @@ export class ProductService {
   addSolidTyreRib(data: any): Observable<any> {
     return this.http.post<Tyre[]>(`/api/solidTyreRib/AddSolidTyreRib`, data);
   }
+
+  //Delete Product
+  deleteSolidTyreComfort(id: number): Observable<any> {
+    return this.http.delete(`/api/solidTyreComfort/DeleteSolidTyreComfort/${id}`);
+  }
+
+  deleteSolidTyreSmart(id: number): Observable<any> {
+    return this.http.delete(`/api/solidTyreSmart/DeleteSolidTyreSmart/${id}`);
+  }
+
+  deleteSolidTyreRib(id: number): Observable<any> {
+    return this.http.delete(`/api/solidTyreRib/DeleteSolidTyreRib/${id}`);
+  }
+
+  //Update Product
+  updateSolidTyreComfort(data: any): Observable<any> {
+    return this.http.put(`/api/solidTyreComfort/UpdateSolidTyreComfort`, data);
+  }
+
+  updateSolidTyreSmart(data: any): Observable<any> {
+    return this.http.put(`/api/solidTyreSmart/UpdateSolidTyreSmart`, data);
+  }
+
+  updateSolidTyreRib(data: any): Observable<any> {
+    return this.http.put(`/api/solidTyreRib/UpdateSolidTyreRib`, data);
+  }
 }

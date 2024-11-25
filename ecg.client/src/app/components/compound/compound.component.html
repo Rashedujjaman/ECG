@@ -5,16 +5,15 @@
             On customer request we can manufacture our solid tyres with the below mentioned compounds:</span>
     </div>
     <div class="compounds">
-      <div class="compound">
+      <div class="compound" *ngIf="compound1">
         <div class="circle compound-alias compound-1">
           <span>{{compound1.alias}}</span>
-
         </div>
         <div class="compound-name">
           <span>{{compound1.name}}</span>
         </div>
       </div>
-      <div class="compound">
+      <div class="compound"  *ngIf="compound2">
         <div class="circle compound-alias compound-2">
           <span>{{compound2.alias}}</span>
         </div>
@@ -22,7 +21,7 @@
           <span>{{compound2.name}}</span>
         </div>
       </div>
-      <div class="compound">
+      <div class="compound" *ngIf="compound3">
         <div class="circle compound-alias compound-3">
           <span>{{compound3.alias}}</span>
         </div>
@@ -30,7 +29,7 @@
           <span>{{compound3.name}}</span>
         </div>
       </div>
-      <div class="compound">
+      <div class="compound"  *ngIf="compound4">
         <div class="circle compound-alias compound-4">
           <span>{{compound4.alias}}</span>
         </div>
@@ -38,7 +37,7 @@
           <span>{{compound4.name}}</span>
         </div>
       </div>
-      <div class="compound">
+      <div class="compound" *ngIf="compound5">
         <div class="circle compound-alias compound-5">
           <span>{{compound5.alias}}</span>
         </div>

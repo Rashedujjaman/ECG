@@ -1,0 +1,71 @@
+
+<div class="container">
+  <div class="row g-5">
+    <!--Form to edit compounds-->
+    <div class="col-md-4 brand-bg rounded">
+      <h2 class="my-4">Edit Compound</h2>
+      <div class="mb-3">
+        <label for="tyre" class="form-label">Compound</label>
+        <select id="tyre"
+                class="form-control"
+                [(ngModel)]="selectedCompound"
+                (change)="onCompoundChange()">
+          <option value="null">Select a compound</option>
+          <option [ngValue]="compound" *ngFor="let compound of compounds">
+            Compound {{ compound.id }}
+          </option>
+        </select>
+      </div>
+
+
+      <form *ngIf="selectedCompound" [formGroup]="compoundForm" (ngSubmit)="onCompoundSubmit()">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" formControlName="name" class="form-control" placeholder="Ex. Cut Resistant">
+          <div *ngIf="compoundForm.controls['name'].invalid && compoundForm.controls['name'].touched" class="text-danger">
+            Name is required.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="alias" class="form-label">Alias</label>
+          <input type="text" id="alias" formControlName="alias" class="form-control" placeholder="Ex. R">
+          <div *ngIf="compoundForm.controls['alias'].invalid && compoundForm.controls['alias'].touched" class="text-danger">
+            Alias is required.
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-5" [disabled]="compoundForm.invalid">Add Product</button>
+      </form>
+    </div>
+
+    <!--Table-->
+    <div class="col-md-8">
+      <h2 class="my-4">View Compounds</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Alias</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let compound of compounds; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ compound.name }}</td>
+            <td>{{ compound.alias }}</td>
+            <td class="actions-column">
+              <button class="edit-button action-button" (click)="onEditCompound(compound)">
+                <fa-icon [icon]="faEdit"></fa-icon>
+              </button>
+              <button class="delete-button action-button" (click)="deleteCompound(compound)">
+                <fa-icon [icon]="faTrash"></fa-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>

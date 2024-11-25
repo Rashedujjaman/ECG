@@ -1,1 +1,7 @@
-<app-table [groupedData]="groupedData" [title1]="title1" [title2]="title2" [imageUrl]="imageUrl"></app-table>
+<app-table [groupedData]="groupedData"
+           [title1]="title1"
+           [title2]="title2"
+           [imageUrl]="imageUrl"
+           [isSettingPage]="isSettingPage"
+           (editItem)="onEdit($event)">
+</app-table>

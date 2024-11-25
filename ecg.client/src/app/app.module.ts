@@ -14,6 +14,7 @@ import { SolidTyreRibComponent } from './components/dashboard/solid-tyre-rib/sol
 import { TableComponent } from './components/table/table.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductComponent } from './components/product/product.component';
+import { CompoundComponent } from './components/compound/compound.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { Router, RouterOutlet, RouterModule } from '@angular/router';
@@ -25,7 +26,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { SettingComponent } from './components/setting/setting.component';
 import { ProductManagerComponent } from './components/setting/product-manager/product-manager.component';
 import { MilestoneManagerComponent } from './components/setting/milestone-manager/milestone-manager.component';
-import { CompoundComponent } from './components/compound/compound.component';
+import { CompoundManagerComponent } from './components/setting/compound-manager/compound-manager.component';
 import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
@@ -41,8 +42,11 @@ import { LoginComponent } from './components/login/login.component';
     TableComponent, AboutComponent,
     MilestoneComponent, ContactComponent,
     QualityAssuranceComponent, CompoundComponent,
+
     LoginComponent,
-    SettingComponent, ProductManagerComponent, MilestoneManagerComponent,
+
+    SettingComponent,
+    ProductManagerComponent, MilestoneManagerComponent, CompoundManagerComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

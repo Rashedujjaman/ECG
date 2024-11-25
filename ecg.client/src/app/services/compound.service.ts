@@ -14,10 +14,12 @@ export class CompoundService {
   getCompounds(): Observable<Compound[]> {
     return this.http.get<Compound[]>(`${this.apiUrl}/getCompounds`);
   }
-  addCompound(compound: Compound) {
-    return this.http.post(`${this.apiUrl}/addCompound`, compound);
+
+  updateCompound(compound: Compound): Observable<any> {
+    return this.http.put(`${this.apiUrl}/updateCompound/${compound.id}`, compound);
   }
-  deleteCompound(compound: Compound) {
-    return this.http.delete(`${this.apiUrl}/deleteCompound/${compound.id}`);
+
+  deleteCompound(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/deleteCompound/${id}`);
   }
 }

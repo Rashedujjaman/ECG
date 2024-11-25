@@ -17,6 +17,7 @@
       <th rowspan="2">Weight kg±2%</th>
       <th colspan="2">Sizes ±2%</th>
       <th colspan="2">Speed 25 km/H max</th>
+      <th rowspan="2" *ngIf="isSettingPage">Actions</th>
     </tr>
     <tr>
       <th>mm ±2%</th>
@@ -38,6 +39,14 @@
         <td>{{ item.width }}</td>
         <td>{{ item.loadBearing }}</td>
         <td>{{ item.steering }}</td>
+        <td class="actions-column" *ngIf="isSettingPage">
+          <button class="edit-button action-button" (click)="onEditProduct(item)">
+            <fa-icon [icon]="faEdit"></fa-icon>
+          </button>
+          <button class="delete-button action-button" (click)="onDeleteProduct(item)">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button>
+        </td>
       </tr>
     </ng-container>
   </tbody>

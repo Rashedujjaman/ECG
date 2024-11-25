@@ -75,7 +75,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary mb-5" [disabled]="productForm.invalid">Add Product</button>
+        <button type="submit" class="btn btn-primary mb-5" [disabled]="productForm.invalid">{{isEditMode ? 'Update' : 'Add' }}</button>
       </form>
     </div>
 
@@ -95,13 +95,13 @@
       </div>
       <!-- Conditional Table Rendering -->
       <div *ngIf="selectedTableView === 'STC'">
-        <solid-tyre-comfort #solidTyreComfort></solid-tyre-comfort>
+        <solid-tyre-comfort #solidTyreComfort [isSettingPage]="true" (editItem)="onEdit($event)"></solid-tyre-comfort>
       </div>
       <div *ngIf="selectedTableView === 'STS'">
-        <solid-tyre-smart #solidTyreSmart></solid-tyre-smart>
+        <solid-tyre-smart #solidTyreSmart [isSettingPage]="true" (editItem)="onEdit($event)"></solid-tyre-smart>
       </div>
       <div *ngIf="selectedTableView === 'STR'">
-        <solid-tyre-rib #solidTyreRib></solid-tyre-rib>
+        <solid-tyre-rib #solidTyreRib [isSettingPage]="true" (editItem)="onEdit($event)"></solid-tyre-rib>
       </div>
     </div>
   </div>

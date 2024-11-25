@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Tyre } from '../../../interfaces/tyre';
 import { ProductService } from '../../../services/product.service';
 
@@ -10,6 +10,11 @@ import { ProductService } from '../../../services/product.service';
 })
 
 export class SolidTyreComfortComponent implements OnInit {
+
+  @Input() isSettingPage?: boolean = false;
+
+  @Output() editItem = new EventEmitter<any>();
+
   public solidTyreComfort: Tyre[] = [];
   public groupedData: any[] = [];
 
@@ -24,8 +29,11 @@ export class SolidTyreComfortComponent implements OnInit {
     this.getSolidTyreComfort();
   }
 
+  onEdit(item: any) {
+    this.editItem.emit(item);
+  }
+
   getSolidTyreComfort() {
-    //this.http.get<Tyre[]>('/api/solidTyreComfort/GetSolidTyreComfort').subscribe(
 
     this.productService.getSolidTyreComfort().subscribe(
       (result) => {
@@ -55,5 +63,16 @@ export class SolidTyreComfortComponent implements OnInit {
   addNewTyre(newTyre: Tyre) {
     this.solidTyreComfort.push(newTyre);
     this.groupDataByCategory();
+  }
+
+  // Update an existing tyre in the table
+  updateExistingTyre(updatedTyre: Tyre) {
+    const index = this.solidTyreComfort.findIndex((tyre) => tyre.id === updatedTyre.id);
+    if (index !== -1) {
+      // Update the existing tyre
+      this.solidTyreComfort[index] = updatedTyre;
+      // Refresh grouped data
+      this.groupDataByCategory();
+    }
   }
 }

@@ -1,15 +1,27 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Tyre } from '../../../interfaces/tyre';
 import { ProductService } from '../../../services/product.service';
 
 
 @Component({
   selector: 'solid-tyre-rib',
-  template: `<app-table [groupedData]="groupedData" [title1]="title1" [title2]="title2" [imageUrl]="imageUrl"></app-table>`,
+  template: `<app-table
+               [groupedData]="groupedData"
+               [title1]="title1"
+               [title2]="title2"
+               [imageUrl]="imageUrl"
+               [isSettingPage]="isSettingPage"
+               (editItem)="onEdit($event)">
+            </app-table>`,
 })
 
 export class SolidTyreRibComponent implements OnInit {
+
+  @Input() isSettingPage?: boolean = false;
+
+  @Output() editItem = new EventEmitter<any>();
+
   public solidTyreRib: Tyre[] = [];
   public groupedData: any[] = [];
 
@@ -21,6 +33,10 @@ export class SolidTyreRibComponent implements OnInit {
 
   ngOnInit() {
     this.getSolidTyreRib();
+  }
+
+  onEdit(item: any) {
+    this.editItem.emit(item);
   }
 
   getSolidTyreRib() {
@@ -54,5 +70,16 @@ export class SolidTyreRibComponent implements OnInit {
   addNewTyre(newTyre: Tyre) {
     this.solidTyreRib.push(newTyre);
     this.groupDataByCategory();
+  }
+
+  // Update an existing tyre in the table
+  updateExistingTyre(updatedTyre: Tyre) {
+    const index = this.solidTyreRib.findIndex((tyre) => tyre.id === updatedTyre.id);
+    if (index !== -1) {
+      // Update the existing tyre
+      this.solidTyreRib[index] = updatedTyre;
+      // Refresh grouped data
+      this.groupDataByCategory();
+    }
   }
 }

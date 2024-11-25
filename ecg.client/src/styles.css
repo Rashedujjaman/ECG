@@ -208,9 +208,19 @@ table {
   font-size: 12px;
 }
 
+thead{
+  border: 1.75px solid #000;
+  border-bottom: 0;
+}
+tbody {
+  border-top:0;
+  border: 1.75px solid #000;
+}
+
 th {
   padding: 0.75rem;
   border: 1px solid #fff;
+
   background-color: #000;
   color: #fff;
   text-align: center;
@@ -321,6 +331,30 @@ td {
   width: 60px;
   font-size: 12px;
 /*  background: red;*/
+}
+
+.actions-column{
+  width: 80px;
+  gap: 10px;
+}
+
+.action-button {
+  color: rgba(30, 48, 80);
+  border-radius: 10px;
+  height: 30px;
+  width: 30px;
+  padding: 0;
+/*  border: 1px solid rgba(30, 48, 80);*/
+  border: 0;
+  background: none;
+}
+
+.edit-button:hover {
+  color: orange;
+}
+
+.delete-button:hover {
+  color: red;
 }
 
 

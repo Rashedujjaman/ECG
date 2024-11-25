@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Tyre } from '../../../interfaces/tyre';
 import { ProductService } from '../../../services/product.service';
 
@@ -10,6 +10,11 @@ import { ProductService } from '../../../services/product.service';
 })
 
 export class SolidTyreSmartComponent implements OnInit {
+
+  @Input() isSettingPage?: boolean = false;
+
+  @Output() editItem = new EventEmitter<any>();
+
   public solidTyreSmart: Tyre[] = [];
   public groupedData: any[] = [];
 
@@ -21,6 +26,10 @@ export class SolidTyreSmartComponent implements OnInit {
 
   ngOnInit() {
     this.getSolidTyreSmart();
+  }
+
+  onEdit(item: any) {
+    this.editItem.emit(item);
   }
 
   getSolidTyreSmart() {
@@ -55,5 +64,16 @@ export class SolidTyreSmartComponent implements OnInit {
   addNewTyre(newTyre: Tyre) {
     this.solidTyreSmart.push(newTyre);
     this.groupDataByCategory();
+  }
+
+  // Update an existing tyre in the table
+  updateExistingTyre(updatedTyre: Tyre) {
+    const index = this.solidTyreSmart.findIndex((tyre) => tyre.id === updatedTyre.id);
+    if (index !== -1) {
+      // Update the existing tyre
+      this.solidTyreSmart[index] = updatedTyre;
+      // Refresh grouped data
+      this.groupDataByCategory();
+    }
   }
 }

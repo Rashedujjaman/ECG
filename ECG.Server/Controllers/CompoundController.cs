@@ -16,7 +16,7 @@ namespace ECG.Server.Controllers
         }
 
         [HttpGet("GetCompounds")]
-        public ActionResult<IEnumerable<Compound>> getCompounds() 
+        public ActionResult<IEnumerable<Compound>> GetCompounds() 
         {
             try
             {
@@ -29,6 +29,57 @@ namespace ECG.Server.Controllers
             }
  
         }
+
+        [HttpPut("UpdateCompound/{id}")]
+        public ActionResult<IEnumerable<Compound>> UpdateCompound(int id, [FromBody] Compound model)
+        {
+            try
+            {
+                var compound = _dbContext.Compound.FirstOrDefault(c => c.Id == id);
+
+                if (compound == null)
+                {
+                    return BadRequest("Compound Not Found");
+                }
+                compound.Name = model.Name;
+                compound.Alias = model.Alias;
+
+                _dbContext.Compound.Update(compound);
+                _dbContext.SaveChanges();
+
+                return Ok(compound);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpDelete("DeleteCompound/{id}")]
+        public ActionResult DeleteCompound(int id)
+        {
+            try
+            {
+                var compound = _dbContext.Compound.FirstOrDefault(c => c.Id == id);
+
+                if (compound == null)
+                {
+                    return NotFound("Compound Not Found");
+                }
+
+                _dbContext.Compound.Remove(compound);
+                _dbContext.SaveChanges();
+
+                return Ok("Compound Deleted Successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
 
     }
 }

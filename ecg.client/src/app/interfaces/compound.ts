@@ -1,5 +1,5 @@
 export interface Compound {
-  id?: number,
+  id: number,
   name: string,
   alias: string
 }
