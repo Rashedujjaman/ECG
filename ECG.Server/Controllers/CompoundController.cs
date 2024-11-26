@@ -1,5 +1,6 @@
 ﻿using ECG.Server.Data;
 using ECG.Server.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECG.Server.Controllers
@@ -30,6 +31,8 @@ namespace ECG.Server.Controllers
  
         }
 
+        [Authorize]
+        [AdminOnly]
         [HttpPut("UpdateCompound/{id}")]
         public ActionResult<IEnumerable<Compound>> UpdateCompound(int id, [FromBody] Compound model)
         {
@@ -55,31 +58,29 @@ namespace ECG.Server.Controllers
             }
         }
 
+        //[Authorize]
+        //[AdminOnly]
+        //[HttpDelete("DeleteCompound/{id}")]
+        //public ActionResult DeleteCompound(int id)
+        //{
+        //    try
+        //    {
+        //        var compound = _dbContext.Compound.Find(id);
 
-        [HttpDelete("DeleteCompound/{id}")]
-        public ActionResult DeleteCompound(int id)
-        {
-            try
-            {
-                var compound = _dbContext.Compound.FirstOrDefault(c => c.Id == id);
+        //        if (compound == null)
+        //        {
+        //            return NotFound("Compound Not Found");
+        //        }
 
-                if (compound == null)
-                {
-                    return NotFound("Compound Not Found");
-                }
+        //        _dbContext.Compound.Remove(compound);
+        //        _dbContext.SaveChanges();
 
-                _dbContext.Compound.Remove(compound);
-                _dbContext.SaveChanges();
-
-                return Ok("Compound Deleted Successfully");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-
-
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
     }
 }

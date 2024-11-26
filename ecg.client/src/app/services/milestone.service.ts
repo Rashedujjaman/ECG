@@ -23,4 +23,8 @@ export class MilestoneService {
       responseType: 'blob'
     });
   }
+
+  deleteFileById(fileId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/DeleteFileById/${fileId}`);
+  }
 }

@@ -358,6 +358,54 @@ td {
 }
 
 
+/*Milestone-Manager*/
+.card-container {
+  perspective: 1000px;
+  height: 200px;
+  width: 140px;
+}
+
+.card-container .card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform .8s;
+  height: 100%;
+  width: 100%;
+}
+
+  .card-container:hover .card {
+    transform: rotateY(180deg);
+  }
+
+.front, .back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.front{
+    z-index: 2;
+}
+
+.back {
+  background: #ffa7a7;
+  transform: rotateY(180deg);
+  z-index: 1;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+}
+
+.milestone-delete{
+    border: 0;
+    background: transparent;
+}
+
+
 /* Table */
 .brand-bg {
   background: #e5f9e2;

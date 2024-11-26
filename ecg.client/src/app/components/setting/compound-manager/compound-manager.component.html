@@ -11,8 +11,8 @@
                 [(ngModel)]="selectedCompound"
                 (change)="onCompoundChange()">
           <option value="null">Select a compound</option>
-          <option [ngValue]="compound" *ngFor="let compound of compounds">
-            Compound {{ compound.id }}
+          <option [ngValue]="compound" *ngFor="let compound of compounds; let i = index">
+            Compound {{ i+1 }}
           </option>
         </select>
       </div>
@@ -59,9 +59,9 @@
               <button class="edit-button action-button" (click)="onEditCompound(compound)">
                 <fa-icon [icon]="faEdit"></fa-icon>
               </button>
-              <button class="delete-button action-button" (click)="deleteCompound(compound)">
+              <!--<button class="delete-button action-button" (click)="deleteCompound(compound)">
                 <fa-icon [icon]="faTrash"></fa-icon>
-              </button>
+              </button>-->
             </td>
           </tr>
         </tbody>

@@ -28,14 +28,28 @@
         <div *ngFor="let milestone of milestones" class="mb-3">
           <h5>{{ milestone.title }}</h5>
           <div class="d-flex flex-wrap mt-2">
-            <div *ngFor="let file of milestone.files" class="card me-3 mb-3" style="width: 120px;">
-              <div class="card-body text-center">
-                <img *ngIf="pdfPreviews[file.id]"
-                     [src]="pdfPreviews[file.id]"
-                     alt="PDF Preview"
-                     class="img-fluid mb-2"
-                     style="cursor: pointer;" />
-                <div *ngIf="!pdfPreviews[file.id]">Loading Preview...</div>
+            <div *ngFor="let file of milestone.files" class="card-container me-3 mb-3">
+              <div class="card">
+                <!-- Front Side -->
+                <div class="front">
+                  <div class="card-body p-0 text-center">
+                    <img *ngIf="pdfPreviews[file.id]"
+                         [src]="pdfPreviews[file.id]"
+                         alt="PDF Preview"
+                         class="img-fluid mb-2 rounded"
+                         style="cursor: pointer;" />
+                    <div *ngIf="!pdfPreviews[file.id]">Loading Preview...</div>
+                  </div>
+                </div>
+
+                <!-- Back Side -->
+                <div class="back rounded">
+                  <div class="card-body  text-center ">
+                    <button class="delete-button milestone-delete" (click)="onDeleteFile(file, milestone)">
+                      <fa-icon [icon]="faTrash"></fa-icon>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

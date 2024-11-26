@@ -83,18 +83,18 @@ export class CompoundManagerComponent implements OnInit {
   }
 
 
-  deleteCompound(compound: Compound) {
-    if (confirm(`Are you sure you want to delete compound ${compound.name}?`)) {
-      this.compoundService.deleteCompound(compound?.id).subscribe(
-        () => {
-          alert('Compound deleted successfully.');
-          this.getCompounds();
-        },
-        (error) => {
-          console.log(error);
-          alert('Failed to delete compound.');
-        }
-      );
-    }
-  }
+  //deleteCompound(compound: Compound) {
+  //  if (confirm(`Are you sure you want to delete compound ${compound.name}?`)) {
+  //    this.compoundService.deleteCompound(compound?.id).subscribe(
+  //      () => {
+  //        alert('Compound deleted successfully.');
+  //        this.getCompounds();
+  //      },
+  //      (error) => {
+  //        console.log(error);
+  //        alert('Failed to delete compound.');
+  //      }
+  //    );
+  //  }
+  //}
 }

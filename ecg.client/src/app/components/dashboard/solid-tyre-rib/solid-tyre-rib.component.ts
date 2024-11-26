@@ -12,7 +12,8 @@ import { ProductService } from '../../../services/product.service';
                [title2]="title2"
                [imageUrl]="imageUrl"
                [isSettingPage]="isSettingPage"
-               (editItem)="onEdit($event)">
+               (editItem)="onEdit($event)"
+               (deleteItem)="onDelete($event)">
             </app-table>`,
 })
 
@@ -35,12 +36,7 @@ export class SolidTyreRibComponent implements OnInit {
     this.getSolidTyreRib();
   }
 
-  onEdit(item: any) {
-    this.editItem.emit(item);
-  }
-
   getSolidTyreRib() {
-    //this.http.get<Tyre[]>('/api/solidTyreRib/GetSolidTyreRib').subscribe(
     this.productService.getSolidTyreRib().subscribe(
       (result) => {
         this.solidTyreRib = result;
@@ -51,7 +47,6 @@ export class SolidTyreRibComponent implements OnInit {
       }
     );
   }
-
 
   groupDataByCategory() {
     const grouped = this.solidTyreRib.reduce((acc, item) => {
@@ -80,6 +75,26 @@ export class SolidTyreRibComponent implements OnInit {
       this.solidTyreRib[index] = updatedTyre;
       // Refresh grouped data
       this.groupDataByCategory();
+    }
+  }
+
+  onEdit(item: any) {
+    this.editItem.emit(item);
+  }
+
+  onDelete(item: any) {
+    if (confirm(`Are you sure you want to delete ${item.size}?`)) {
+      this.productService.deleteSolidTyreRib(item.id).subscribe({
+        next: () => {
+          alert('Product deleted successfully!');
+          this.solidTyreRib = this.solidTyreRib.filter(tyre => tyre.id !== item.id);
+          this.groupDataByCategory()
+        },
+        error: (error) => {
+          console.error('Error deleting product:', error);
+          alert(error.error);
+        }
+      });
     }
   }
 }

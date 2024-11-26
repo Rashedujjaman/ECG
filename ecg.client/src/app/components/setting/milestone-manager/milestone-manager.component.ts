@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MilestoneService } from '../../../services/milestone.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { MilestoneFile } from '../../../interfaces/milestone-file';
 import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf';
+import { Milestone } from '../../../interfaces/milestone';
 
 @Component({
 
@@ -13,8 +16,11 @@ export class MilestoneManagerComponent implements OnInit {
   milestoneForm: FormGroup;
   selectedFiles: File[] = [];
 
-  milestones: any[] = [];
+  milestones: Milestone[] = [];
   pdfPreviews: { [key: number]: string } = {};
+
+  // Icon
+  faTrash = faTrash;
 
   constructor(private fb: FormBuilder, private milestoneService: MilestoneService, private sanitizer: DomSanitizer) {
     this.milestoneForm = this.fb.group({
@@ -27,9 +33,6 @@ export class MilestoneManagerComponent implements OnInit {
   }
 
   // Method to handle file selection
-  //onFileSelected(event: any): void {
-  //  this.selectedFiles = event.target.files;
-  //}
   onFileSelected(event: any): void {
     this.selectedFiles = [];
     const files = event.target.files;
@@ -73,6 +76,7 @@ export class MilestoneManagerComponent implements OnInit {
         alert(response.message);
         this.milestoneForm.reset();
         this.selectedFiles = [];
+        this.loadMilestones();
         // Clear the file input
         const fileInput = document.getElementById('files') as HTMLInputElement;
         if (fileInput) {
@@ -138,6 +142,25 @@ export class MilestoneManagerComponent implements OnInit {
     const previewUrl = canvas.toDataURL();
     this.pdfPreviews[fileId] = previewUrl;
   }
+
+  onDeleteFile(file: MilestoneFile, milestone: Milestone): void {
+    if (confirm(`Are you sure you want to delete ${file.fileName}?`)) {
+
+      this.milestoneService.deleteFileById(file.id).subscribe({
+        next: () => {
+          alert('Milestone certificate deleted successfully!');
+
+          // Remove the deleted file from the milestone's file list
+          milestone.files = milestone.files.filter((f: MilestoneFile) => f.id !== file.id);
+        },
+        error: (error) => {
+          console.error('Error deleting milestone', error);
+          alert(error.error?.error || 'An error occurred while deleting the file.');
+        }
+      });
+    }
+  }
+
 }
 
 

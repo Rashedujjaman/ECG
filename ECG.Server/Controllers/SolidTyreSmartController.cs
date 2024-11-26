@@ -48,5 +48,62 @@ namespace ECG.Server.Controllers
         }
 
 
+        [Authorize]
+        [AdminOnly]
+        [HttpPut("UpdateSolidTyreSmart/{id}")]
+        public ActionResult UpdateSolidTyreSmart(int id, [FromBody] SolidTyreSmart updatedProduct)
+        {
+            try
+            {
+                var existingSolidTyreSmart = _dbContext.SolidTyreSmart.Find(id);
+                if (existingSolidTyreSmart == null)
+                {
+                    return NotFound("Product not found");
+                }
+
+                existingSolidTyreSmart.Size = updatedProduct.Size;
+                existingSolidTyreSmart.Rimsize = updatedProduct.Rimsize;
+                existingSolidTyreSmart.Weight = updatedProduct.Weight;
+                existingSolidTyreSmart.MM = updatedProduct.MM;
+                existingSolidTyreSmart.Width = updatedProduct.Width;
+                existingSolidTyreSmart.LoadBearing = updatedProduct.LoadBearing;
+                existingSolidTyreSmart.Steering = updatedProduct.Steering;
+                existingSolidTyreSmart.Category = updatedProduct.Category;
+
+                _dbContext.SaveChanges();
+                return Ok(existingSolidTyreSmart);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [Authorize]
+        [AdminOnly]
+        [HttpDelete("DeleteSolidTyreSmart/{id}")]
+        public ActionResult DeleteSolidTyreSmart(int id)
+        {
+            try
+            {
+                var existingSolidTyreSmart = _dbContext.SolidTyreSmart.Find(id);
+                if (existingSolidTyreSmart == null)
+                {
+                    return NotFound("Product not found");
+                }
+
+                _dbContext.SolidTyreSmart.Remove(existingSolidTyreSmart);
+                _dbContext.SaveChanges();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+
     }
 }

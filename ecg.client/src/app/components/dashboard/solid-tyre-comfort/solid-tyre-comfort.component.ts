@@ -29,9 +29,6 @@ export class SolidTyreComfortComponent implements OnInit {
     this.getSolidTyreComfort();
   }
 
-  onEdit(item: any) {
-    this.editItem.emit(item);
-  }
 
   getSolidTyreComfort() {
 
@@ -73,6 +70,26 @@ export class SolidTyreComfortComponent implements OnInit {
       this.solidTyreComfort[index] = updatedTyre;
       // Refresh grouped data
       this.groupDataByCategory();
+    }
+  }
+
+  onEdit(item: any) {
+    this.editItem.emit(item);
+  }
+
+  onDelete(item: any) {
+    if (confirm(`Are you sure you want to delete ${item.size}?`)) {
+      this.productService.deleteSolidTyreComfort(item.id).subscribe({
+        next: () => {
+          alert('Product deleted successfully!');
+          this.solidTyreComfort = this.solidTyreComfort.filter(tyre => tyre.id !== item.id);
+          this.groupDataByCategory()
+        },
+        error: (error) => {
+          console.error('Error deleting product:', error);
+          alert(error.error);
+        }
+      });
     }
   }
 }
