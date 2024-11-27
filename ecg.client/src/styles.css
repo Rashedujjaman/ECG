@@ -416,7 +416,7 @@ td {
   background: #333;
   display: flex;
   flex-direction: row;
-  height: 180px;
+/*  height: 180px;*/
   color: #fff;
   padding: 30px;
 }
@@ -465,8 +465,7 @@ td {
 }
 
   .footer-nav .nav-link {
-    color: #fff;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: lighter;
   }
 

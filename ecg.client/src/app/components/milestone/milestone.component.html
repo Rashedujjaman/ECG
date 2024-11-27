@@ -4,13 +4,16 @@
   </div>
 </section>
 
-<section class="milestone-container py-5">
+<section class="milestone-container mt-5">
   <div class="container">
+    <div *ngIf="milestones.length < 0 && !isLoading" class="text-center">
+      <p>No Data Found</p>
+    </div>
     <div *ngIf="milestones.length > 0">
-      <h3 class="mb-5 text-center">Milestones</h3>
-      <div *ngFor="let milestone of milestones" class="mb-4">
-        <h5>{{ milestone.title }}</h5>
-        <div class="d-flex flex-wrap mt-2">
+      <h2 class="mb-5 text-center">Milestones</h2>
+      <div *ngFor="let milestone of milestones">
+        <h4>{{ milestone.title }}</h4>
+        <div class="d-flex flex-wrap mt-3">
           <div *ngFor="let file of milestone.files" class="card me-5 mb-5" style="width: 300px;">
             <div class="card-body text-center">
               <img *ngIf="pdfPreviews[file.id]"

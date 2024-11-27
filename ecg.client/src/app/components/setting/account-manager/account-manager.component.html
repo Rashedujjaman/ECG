@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row g-5">
+    <!-- Account Information -->
+    <div class="col-md-4 brand-bg rounded">
+      <h2 class="my-4">Account Manager</h2>
+      <div class="mb-3">
+        <h5 for="userName" class="form-label">Username: {{ user?.userName }}</h5>
+      </div>
+      <button class="btn btn-secondary mb-3" (click)="spanForm()">
+        {{ formVisible ? 'Hide Form' : 'Reset Password' }}
+      </button>
+    </div>
+
+    <!-- Reset Password Form -->
+    <div *ngIf="formVisible" class="col-md-6">
+      <h2 class="my-4">Reset Password</h2>
+      <form [formGroup]="resetForm" (ngSubmit)="resetPassword()">
+        <div class="mb-3">
+          <label for="oldPassword" class="form-label">Old Password</label>
+          <input type="password"
+                 id="oldPassword"
+                 formControlName="oldPassword"
+                 class="form-control"
+                 placeholder="Enter old password" />
+          <div *ngIf="resetForm.controls['oldPassword'].invalid && resetForm.controls['oldPassword'].touched" class="text-danger">
+            Old password is required.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="newPassword" class="form-label">New Password</label>
+          <input type="password"
+                 id="newPassword"
+                 formControlName="newPassword"
+                 class="form-control"
+                 placeholder="Enter new password" />
+          <div *ngIf="resetForm.controls['newPassword'].invalid && resetForm.controls['newPassword'].touched" class="text-danger">
+            New password must be at least 6 characters long.
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 mb-3" [disabled]="resetForm.invalid">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

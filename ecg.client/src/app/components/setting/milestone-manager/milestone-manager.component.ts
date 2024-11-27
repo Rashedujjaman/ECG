@@ -143,6 +143,21 @@ export class MilestoneManagerComponent implements OnInit {
     this.pdfPreviews[fileId] = previewUrl;
   }
 
+  onDeleteMilestone(milestone: Milestone) {
+    if (confirm(`Are you sure you want to delete ${milestone.title}?`)) {
+      this.milestoneService.deleteMilestone(milestone.id).subscribe({
+        next: () => {
+          alert('Milestone deleted successfylly!');
+          this.milestones = this.milestones.filter((m: Milestone) => m.id !== milestone.id);
+        },
+        error: (error) => {
+          console.error('Error deleting milestone', error);
+          alert(error.error?.error || 'An error occurred while deleting the milestone.');
+        }
+      })
+    }
+  }
+
   onDeleteFile(file: MilestoneFile, milestone: Milestone): void {
     if (confirm(`Are you sure you want to delete ${file.fileName}?`)) {
 
@@ -154,7 +169,7 @@ export class MilestoneManagerComponent implements OnInit {
           milestone.files = milestone.files.filter((f: MilestoneFile) => f.id !== file.id);
         },
         error: (error) => {
-          console.error('Error deleting milestone', error);
+          console.error('Error deleting milestone file', error);
           alert(error.error?.error || 'An error occurred while deleting the file.');
         }
       });

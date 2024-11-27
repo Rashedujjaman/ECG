@@ -1,40 +1,45 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Tyre } from '../../../interfaces/tyre';
-import { ProductService } from '../../../services/product.service';
+import { Tyre } from '../../interfaces/tyre';
+import { ProductService } from '../../services/product.service';
+
 
 @Component({
-  selector: 'solid-tyre-comfort',
-  templateUrl: './solid-tyre-comfort.component.html',
-  styleUrl: './solid-tyre-comfort.component.css'
+  selector: 'solid-tyre-rib',
+  template: `<app-table
+               [groupedData]="groupedData"
+               [title1]="title1"
+               [title2]="title2"
+               [imageUrl]="imageUrl"
+               [isSettingPage]="isSettingPage"
+               (editItem)="onEdit($event)"
+               (deleteItem)="onDelete($event)">
+            </app-table>`,
 })
 
-export class SolidTyreComfortComponent implements OnInit {
+export class SolidTyreRibComponent implements OnInit {
 
   @Input() isSettingPage?: boolean = false;
 
   @Output() editItem = new EventEmitter<any>();
 
-  public solidTyreComfort: Tyre[] = [];
+  public solidTyreRib: Tyre[] = [];
   public groupedData: any[] = [];
 
-  //table data
   title1: string = 'Solid Tyres';
-  title2: string = 'Comfort';
-  imageUrl: string = 'assets/images/solid-tyre-comfort.png';
+  title2: string = 'Rib';
+  imageUrl: string = 'assets/images/solid-tyre-rib.png';
 
   constructor(private http: HttpClient, private productService: ProductService) { }
 
   ngOnInit() {
-    this.getSolidTyreComfort();
+    this.getSolidTyreRib();
   }
 
-
-  getSolidTyreComfort() {
-
-    this.productService.getSolidTyreComfort().subscribe(
+  getSolidTyreRib() {
+    this.productService.getSolidTyreRib().subscribe(
       (result) => {
-        this.solidTyreComfort = result;
+        this.solidTyreRib = result;
         this.groupDataByCategory();
       },
       (error) => {
@@ -44,7 +49,7 @@ export class SolidTyreComfortComponent implements OnInit {
   }
 
   groupDataByCategory() {
-    const grouped = this.solidTyreComfort.reduce((acc, item) => {
+    const grouped = this.solidTyreRib.reduce((acc, item) => {
       const category = item.category ?? '';
       if (!acc[category]) {
         acc[category] = { category, items: [] };
@@ -58,16 +63,16 @@ export class SolidTyreComfortComponent implements OnInit {
 
   // Add a single tyre to the table
   addNewTyre(newTyre: Tyre) {
-    this.solidTyreComfort.push(newTyre);
+    this.solidTyreRib.push(newTyre);
     this.groupDataByCategory();
   }
 
   // Update an existing tyre in the table
   updateExistingTyre(updatedTyre: Tyre) {
-    const index = this.solidTyreComfort.findIndex((tyre) => tyre.id === updatedTyre.id);
+    const index = this.solidTyreRib.findIndex((tyre) => tyre.id === updatedTyre.id);
     if (index !== -1) {
       // Update the existing tyre
-      this.solidTyreComfort[index] = updatedTyre;
+      this.solidTyreRib[index] = updatedTyre;
       // Refresh grouped data
       this.groupDataByCategory();
     }
@@ -79,10 +84,10 @@ export class SolidTyreComfortComponent implements OnInit {
 
   onDelete(item: any) {
     if (confirm(`Are you sure you want to delete ${item.size}?`)) {
-      this.productService.deleteSolidTyreComfort(item.id).subscribe({
+      this.productService.deleteSolidTyreRib(item.id).subscribe({
         next: () => {
           alert('Product deleted successfully!');
-          this.solidTyreComfort = this.solidTyreComfort.filter(tyre => tyre.id !== item.id);
+          this.solidTyreRib = this.solidTyreRib.filter(tyre => tyre.id !== item.id);
           this.groupDataByCategory()
         },
         error: (error) => {

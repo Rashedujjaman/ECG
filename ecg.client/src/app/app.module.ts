@@ -8,9 +8,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SolidTyreComfortComponent } from './components/dashboard/solid-tyre-comfort/solid-tyre-comfort.component';
-import { SolidTyreSmartComponent } from './components/dashboard/solid-tyre-smart/solid-tyre-smart.component';
-import { SolidTyreRibComponent } from './components/dashboard/solid-tyre-rib/solid-tyre-rib.component';
+import { SolidTyreComfortComponent } from './components/solid-tyre-comfort/solid-tyre-comfort.component';
+import { SolidTyreSmartComponent } from './components/solid-tyre-smart/solid-tyre-smart.component';
+import { SolidTyreRibComponent } from './components/solid-tyre-rib/solid-tyre-rib.component';
 import { TableComponent } from './components/table/table.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductComponent } from './components/product/product.component';
@@ -27,6 +27,7 @@ import { SettingComponent } from './components/setting/setting.component';
 import { ProductManagerComponent } from './components/setting/product-manager/product-manager.component';
 import { MilestoneManagerComponent } from './components/setting/milestone-manager/milestone-manager.component';
 import { CompoundManagerComponent } from './components/setting/compound-manager/compound-manager.component';
+import { AccountManagerComponent } from './components/setting/account-manager/account-manager.component';
 import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
@@ -46,7 +47,8 @@ import { LoginComponent } from './components/login/login.component';
     LoginComponent,
 
     SettingComponent,
-    ProductManagerComponent, MilestoneManagerComponent, CompoundManagerComponent
+    ProductManagerComponent, MilestoneManagerComponent,
+    CompoundManagerComponent, AccountManagerComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,

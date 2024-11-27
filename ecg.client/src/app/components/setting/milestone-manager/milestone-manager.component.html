@@ -26,8 +26,14 @@
       <div *ngIf="milestones.length > 0">
         <h2 class="my-4">View Milestones</h2>
         <div *ngFor="let milestone of milestones" class="mb-3">
-          <h5>{{ milestone.title }}</h5>
-          <div class="d-flex flex-wrap mt-2">
+
+          <div class="d-flex align-items-center my-3">
+            <h5 class="me-3">{{ milestone.title }}</h5>
+            <button class="delete-button action-button" (click)="onDeleteMilestone(milestone)">
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+          </div>
+          <div class="d-flex flex-wrap mt-3">
             <div *ngFor="let file of milestone.files" class="card-container me-3 mb-3">
               <div class="card">
                 <!-- Front Side -->

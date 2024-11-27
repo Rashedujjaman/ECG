@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../../../services/product.service';
-import { SolidTyreComfortComponent } from '../../../components/dashboard/solid-tyre-comfort/solid-tyre-comfort.component';
-import { SolidTyreSmartComponent } from '../../../components/dashboard/solid-tyre-smart/solid-tyre-smart.component';
-import { SolidTyreRibComponent } from '../../../components/dashboard/solid-tyre-rib/solid-tyre-rib.component';
+import { SolidTyreComfortComponent } from '../../solid-tyre-comfort/solid-tyre-comfort.component';
+import { SolidTyreSmartComponent } from '../../solid-tyre-smart/solid-tyre-smart.component';
+import { SolidTyreRibComponent } from '../../solid-tyre-rib/solid-tyre-rib.component';
 
 @Component({
   selector: 'app-product-manager',

@@ -6,6 +6,7 @@ using Org.BouncyCastle.Crypto.Generators;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+//using Microsoft.AspNetCore.Identity.Data;
 
 
 namespace ECG.Server.Controllers
@@ -72,6 +73,23 @@ namespace ECG.Server.Controllers
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); 
+            var user = await _dbContext.Admin.FindAsync(int.Parse(userId));
+
+            if (user == null || !BCrypt.Net.BCrypt.Verify(request.OldPassword, user.Password))
+            {
+                return BadRequest(new { error = "Invalid old password" });
+            }
+
+            user.Password = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(new { message = "Password reset successfully" });
         }
     }
 }

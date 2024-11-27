@@ -24,6 +24,10 @@ export class MilestoneService {
     });
   }
 
+  deleteMilestone(milestoneId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/DeleteMilestone/${milestoneId}`);
+  }
+
   deleteFileById(fileId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/DeleteFileById/${fileId}`);
   }

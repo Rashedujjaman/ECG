@@ -36,13 +36,6 @@ export class AuthService {
     return this.isAdmin;
   }
 
-  // Logout Method
-  logout(): void {
-    localStorage.removeItem('authToken');
-    this.isAdmin = false;
-    this.router.navigate(['/login']);
-  }
-
   // Decode the token and update admin status
   private decodeTokenAndSetAdminStatus(): void {
     const token = localStorage.getItem('authToken');
@@ -57,4 +50,16 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!localStorage.getItem('authToken');
   }
+
+  resetPassword(oldPassword: string, newPassword: string): Observable<any> {
+    return this.http.post('/api/auth/reset-password', { oldPassword, newPassword });
+  }
+
+  // Logout Method
+  logout(): void {
+    localStorage.removeItem('authToken');
+    this.isAdmin = false;
+    this.router.navigate(['/login']);
+  }
+
 }

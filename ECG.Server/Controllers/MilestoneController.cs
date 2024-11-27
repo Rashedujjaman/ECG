@@ -115,6 +115,9 @@ namespace ECG.Server.Controllers
         }
 
 
+
+        [Authorize]
+        [AdminOnly]
         [HttpDelete("DeleteFileById/{fileId}")]
         public async Task<IActionResult> DeleteFile(int fileId)
         {
@@ -137,6 +140,37 @@ namespace ECG.Server.Controllers
             {
                 await transaction.RollbackAsync();
                 return StatusCode(500, new { error = "An error occurred while deleting the file.", details = ex.Message });
+            }
+        }
+
+        [Authorize]
+        [AdminOnly]
+        [HttpDelete("DeleteMilestone/{milestoneId}")]
+        public async Task<IActionResult> DeleteMilestone(int milestoneId)
+        {
+            using var transaction = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                var milestone = await _dbContext.Milestone
+                    .Include(m => m.MilestoneFiles)
+                    .FirstOrDefaultAsync(m => m.Id == milestoneId);
+
+                if (milestone == null)
+                {
+                    return NotFound(new { error = "Milestone not found." });
+                }
+
+                _dbContext.MilestoneFiles.RemoveRange(milestone.MilestoneFiles);
+                _dbContext.Milestone.Remove(milestone);
+                await _dbContext.SaveChangesAsync();
+
+                await transaction.CommitAsync();
+                return Ok(new { message = "Milestone and associated files deleted successfully." });
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return StatusCode(500, new { error = "An error occurred while deleting the milestone.", details = ex.Message });
             }
         }
 

@@ -12,6 +12,8 @@ export class MilestoneComponent implements OnInit {
   milestones: any[] = [];
   pdfPreviews: { [key: number]: string } = {};
 
+  isLoading = false;
+
   bannerImageUrl = 'assets/images/banner04.png';
 
   constructor(private milestoneService: MilestoneService, private sanitizer: DomSanitizer) {}
@@ -23,15 +25,19 @@ export class MilestoneComponent implements OnInit {
 
   // Method to load milestones from the backend
   loadMilestones(): void {
+    this.isLoading = true;
     this.milestoneService.getMilestones().subscribe(
       (data) => {
         this.milestones = data;
         this.generatePreviews();
+        this.isLoading = false;
       },
       (error) => {
         alert('Failed to load milestones.');
         console.error(error);
+        this.isLoading = false;
       }
+
     );
   }
 
