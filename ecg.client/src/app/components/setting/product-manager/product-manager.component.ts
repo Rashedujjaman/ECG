@@ -5,6 +5,7 @@ import { ProductService } from '../../../services/product.service';
 import { SolidTyreComfortComponent } from '../../solid-tyre-comfort/solid-tyre-comfort.component';
 import { SolidTyreSmartComponent } from '../../solid-tyre-smart/solid-tyre-smart.component';
 import { SolidTyreRibComponent } from '../../solid-tyre-rib/solid-tyre-rib.component';
+import { SnackBarService } from '../../../services/snackbar.service';
 
 @Component({
   selector: 'app-product-manager',
@@ -23,7 +24,7 @@ export class ProductManagerComponent implements OnInit {
   isEditMode: boolean = false;
   currentEditItem: any;
 
-  constructor(private fb: FormBuilder, private productService: ProductService) {
+  constructor(private fb: FormBuilder, private productService: ProductService, private SnackBarService: SnackBarService) {
     this.productForm = this.fb.group({
       category: [0, Validators.required],
       size: ['', Validators.required],
@@ -83,11 +84,9 @@ export class ProductManagerComponent implements OnInit {
 
         request.subscribe({
           next: (response: any) => {
-            alert(
-              this.isEditMode
-                ? 'Product updated successfully!'
-                : 'Product added successfully!'
-            );
+            this.SnackBarService.success(this.isEditMode
+              ? 'Product updated successfully!'
+              : 'Product added successfully!', null, 2000);
 
             // Refresh table view or update the relevant child table
             if (this.isEditMode) {
@@ -98,12 +97,10 @@ export class ProductManagerComponent implements OnInit {
 
             // Reset form and state after successful submission
             this.resetFormAndSelection();
-
-
           },
           error: (error: HttpErrorResponse) => {
             console.error(error);
-            alert(error.error.message || 'An error occurred during submission.');
+            this.SnackBarService.error(error.error.message || 'An error occurred during submission.', null, 3000);
           },
         });
       } else if (this.selectedTyreModel === 'STS') {
@@ -116,11 +113,9 @@ export class ProductManagerComponent implements OnInit {
 
         request.subscribe({
           next: (response: any) => {
-            alert(
-              this.isEditMode
-                ? 'Product updated successfully!'
-                : 'Product added successfully!'
-            );
+            this.SnackBarService.success(this.isEditMode
+              ? 'Product updated successfully!'
+              : 'Product added successfully!', null, 2000);
 
             // Refresh table view or update the relevant child table
             if (this.isEditMode) {
@@ -134,7 +129,7 @@ export class ProductManagerComponent implements OnInit {
           },
           error: (error: HttpErrorResponse) => {
             console.error(error);
-            alert(error.error.message || 'An error occurred during submission.');
+            this.SnackBarService.error(error.error.message || 'An error occurred during submission.', null, 3000);
           },
         });
       } else if (this.selectedTyreModel === 'STR') {
@@ -147,11 +142,9 @@ export class ProductManagerComponent implements OnInit {
 
         request.subscribe({
           next: (response: any) => {
-            alert(
-              this.isEditMode
-                ? 'Product updated successfully!'
-                : 'Product added successfully!'
-            );
+            this.SnackBarService.success(this.isEditMode
+              ? 'Product updated successfully!'
+              : 'Product added successfully!', null, 2000);
 
             // Refresh table view or update the relevant child table
             if (this.isEditMode) {
@@ -165,7 +158,7 @@ export class ProductManagerComponent implements OnInit {
           },
           error: (error: HttpErrorResponse) => {
             console.error(error);
-            alert(error.error.message || 'An error occurred during submission.');
+            this.SnackBarService.error(error.error.message || 'An error occurred during submission.', null, 3000);
           },
         });
       }

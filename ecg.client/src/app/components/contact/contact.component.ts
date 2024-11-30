@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { faHome, faPhone, faMailBulk, faMobile, faFax, faGlobeAsia, } from '@fortawesome/free-solid-svg-icons';
-
+import { SnackBarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  //styleUrls: ['./contact.component.css'],
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent {
   enquiryForm: FormGroup;
 
   enquiryResponse = '';
@@ -25,7 +24,9 @@ export class ContactComponent implements OnInit {
   faGlobe = faGlobeAsia;
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient) {
+    private http: HttpClient,
+    private SnackBarService: SnackBarService
+  ) {
     this.enquiryForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -33,9 +34,6 @@ export class ContactComponent implements OnInit {
       mobileNo: ['', [Validators.required, Validators.pattern(/^[0-9]{9,12}$/)]],
       message: ['', Validators.required]
     });
-  }
-
-  ngOnInit(): void {
   }
 
   onEnquiryFormSubmit() {
@@ -47,12 +45,12 @@ export class ContactComponent implements OnInit {
         next: () => {
           this.enquiryResponse = 'Your enquiry was submitted successfully!';
           this.isLoading = false;
-          alert('Enquiry submitted successfully. You will be contacted Soon')
+          this.SnackBarService.success('Enquiry submitted successfully. You will be contacted Soon', null, 2000);
           this.enquiryForm.reset();
         },
         error: (error: HttpErrorResponse) => {
           this.isLoading = false;
-          alert('An error occurred while submitting your enquiry.');
+          this.SnackBarService.error('An error occurred while submitting your enquiry.', null, 3000);
           console.error(error.message);
         }
       });

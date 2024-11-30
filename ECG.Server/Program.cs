@@ -23,6 +23,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 
+//Cors Configuration
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://comfortgreentyre.com.my")
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
+
+
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer(options =>
@@ -54,6 +66,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors();
 
 app.MapControllers();
 

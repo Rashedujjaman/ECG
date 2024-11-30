@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MilestoneService } from '../../services/milestone.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf';
+import { SnackBarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-milestone',
@@ -16,7 +17,7 @@ export class MilestoneComponent implements OnInit {
 
   bannerImageUrl = 'assets/images/banner04.png';
 
-  constructor(private milestoneService: MilestoneService, private sanitizer: DomSanitizer) {}
+  constructor(private milestoneService: MilestoneService, private sanitizer: DomSanitizer, private SnackBarService: SnackBarService) {}
 
   ngOnInit(): void {
     this.loadMilestones();
@@ -33,7 +34,7 @@ export class MilestoneComponent implements OnInit {
         this.isLoading = false;
       },
       (error) => {
-        alert('Failed to load milestones.');
+        this.SnackBarService.error('Failed to load milestones.', null, 2000);
         console.error(error);
         this.isLoading = false;
       }
@@ -91,7 +92,7 @@ export class MilestoneComponent implements OnInit {
         window.URL.revokeObjectURL(url);
       },
       (error) => {
-        alert('Error while downloading the file.');
+        this.SnackBarService.error('Error while downloading the file.', null, 2000);
         console.error(error);
       }
     );

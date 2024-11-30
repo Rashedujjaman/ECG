@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CompoundService } from '../../services/compound.service';
 import { Compound } from '../../interfaces/compound';
+import { SnackBarService } from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-compound',
@@ -14,8 +15,12 @@ export class CompoundComponent implements OnInit {
   compound3!: Compound;
   compound4!: Compound;
   compound5!: Compound;
+  compound6!: Compound;
+  compound7!: Compound;
+  compound8!: Compound;
 
-  constructor(private compoundService: CompoundService) { }
+
+  constructor(private compoundService: CompoundService, private SnackBarService: SnackBarService) { }
   ngOnInit() {
     this.getCompounds();
   }
@@ -29,24 +34,13 @@ export class CompoundComponent implements OnInit {
       this.compound3 = this.compounds[2];
       this.compound4 = this.compounds[3];
       this.compound5 = this.compounds[4];
+      this.compound6 = this.compounds[5];
+      this.compound7 = this.compounds[6];
+      this.compound8 = this.compounds[7];
     },
-    (error) => {
-      alert(error);
+      (error) => {
+        this.SnackBarService.error('An error occured while loading legends.', null, 3000);
+        console.error(error);
     });
   }
-
-  //addCompound(event: any) {
-  //  event.preventDefault();
-  //  const target = event.target;
-  //  const compound: Compound = {
-  //    name: target.querySelector('#name').value,
-  //    alias: target.querySelector('#alias').value,
-  //  };
-  //  this.compoundService.addCompound(compound);
-  //}
-
-
-  //deleteCompound(event, compound) {
-  //  this.compoundService.deleteCompound(compound);
-  //}
 }

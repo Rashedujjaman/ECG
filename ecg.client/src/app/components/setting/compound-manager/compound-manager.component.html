@@ -10,7 +10,7 @@
                 class="form-control"
                 [(ngModel)]="selectedCompound"
                 (change)="onCompoundChange()">
-          <option value="null">Select a compound</option>
+          <option value="null">Add Compound</option>
           <option [ngValue]="compound" *ngFor="let compound of compounds; let i = index">
             Compound {{ i+1 }}
           </option>

@@ -1,5 +1,5 @@
 <body>
-  <section class="header-content">
+  <section class="header-content" *ngIf="!logoutRoot()">
     <app-navbar></app-navbar>
   </section>
 
@@ -7,7 +7,7 @@
     <router-outlet></router-outlet>
   </section>
 
-  <section class="footer-content">
+  <section class="footer-content" *ngIf="!logoutRoot()">
     <app-footer></app-footer>
   </section>
 

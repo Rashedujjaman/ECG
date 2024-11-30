@@ -6,6 +6,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { MilestoneFile } from '../../../interfaces/milestone-file';
 import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf';
 import { Milestone } from '../../../interfaces/milestone';
+import { SnackBarService } from '../../../services/snackbar.service';
 
 @Component({
 
@@ -22,7 +23,7 @@ export class MilestoneManagerComponent implements OnInit {
   // Icon
   faTrash = faTrash;
 
-  constructor(private fb: FormBuilder, private milestoneService: MilestoneService, private sanitizer: DomSanitizer) {
+  constructor(private fb: FormBuilder, private milestoneService: MilestoneService, private sanitizer: DomSanitizer, private SnackBarService: SnackBarService) {
     this.milestoneForm = this.fb.group({
       title: ['', Validators.required]
     });
@@ -73,7 +74,7 @@ export class MilestoneManagerComponent implements OnInit {
     // Call the service to upload the milestone and files
     this.milestoneService.addMilestone(formData).subscribe(
       (response) => {
-        alert(response.message);
+        this.SnackBarService.success(response.message, null, 2000);
         this.milestoneForm.reset();
         this.selectedFiles = [];
         this.loadMilestones();
@@ -84,7 +85,7 @@ export class MilestoneManagerComponent implements OnInit {
         }
       },
       (error) => {
-        alert('Error while uploading milestone and files.');
+        this.SnackBarService.error('Error while uploading milestone and files.', null, 3000);
         console.error(error);
       }
     );
@@ -99,7 +100,7 @@ export class MilestoneManagerComponent implements OnInit {
         this.generatePreviews();
       },
       (error) => {
-        alert('Failed to load milestones.');
+        this.SnackBarService.error('Failed to load milestones.', null, 3000);
         console.error(error);
       }
     );
@@ -147,12 +148,12 @@ export class MilestoneManagerComponent implements OnInit {
     if (confirm(`Are you sure you want to delete ${milestone.title}?`)) {
       this.milestoneService.deleteMilestone(milestone.id).subscribe({
         next: () => {
-          alert('Milestone deleted successfylly!');
+          this.SnackBarService.success('Milestone deleted successfylly!', null, 2000);
           this.milestones = this.milestones.filter((m: Milestone) => m.id !== milestone.id);
         },
         error: (error) => {
           console.error('Error deleting milestone', error);
-          alert(error.error?.error || 'An error occurred while deleting the milestone.');
+          this.SnackBarService.error(error.error?.error || 'An error occurred while deleting the milestone.', null, 3000);
         }
       })
     }
@@ -163,14 +164,14 @@ export class MilestoneManagerComponent implements OnInit {
 
       this.milestoneService.deleteFileById(file.id).subscribe({
         next: () => {
-          alert('Milestone certificate deleted successfully!');
+          this.SnackBarService.success('Milestone certificate deleted successfully!', null, 2000);
 
           // Remove the deleted file from the milestone's file list
           milestone.files = milestone.files.filter((f: MilestoneFile) => f.id !== file.id);
         },
         error: (error) => {
           console.error('Error deleting milestone file', error);
-          alert(error.error?.error || 'An error occurred while deleting the file.');
+          this.SnackBarService.error(error.error?.error || 'An error occurred while deleting the file.', null, 3000);
         }
       });
     }

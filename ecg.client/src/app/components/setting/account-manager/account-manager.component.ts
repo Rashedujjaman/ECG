@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { SnackBarService } from '../../../services/snackbar.service';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class AccountManagerComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private SnackBarService: SnackBarService
   ) {
     this.resetForm = this.formBuilder.group({
       oldPassword: ['', Validators.required],
@@ -33,7 +33,6 @@ export class AccountManagerComponent implements OnInit {
     this.user = {
       userName: 'Admin',
     };
-    console.log('User has been loaded:', this.user);
   }
 
 
@@ -47,13 +46,13 @@ export class AccountManagerComponent implements OnInit {
     const formData = this.resetForm.value;
     this.authService.resetPassword(formData.oldPassword, formData.newPassword).subscribe({
       next: () => {
-        alert('Password reset successfully!');
+        this.SnackBarService.success('Password reset successfully!', null, 2000);
         this.resetForm.reset();
         this.formVisible = false;
       },
       error: (err) => {
         console.error('Error resetting password:', err);
-        alert(err.error.error || 'Failed to reset password.');
+        this.SnackBarService.error(err.error.error || 'Failed to reset password.', null, 3000);
       },
     });
   }
@@ -62,6 +61,5 @@ export class AccountManagerComponent implements OnInit {
   spanForm() {
     this.formVisible = !this.formVisible;
     this.resetForm.reset();
-    console.log('Form visibility toggled:', this.formVisible);
   }
 }

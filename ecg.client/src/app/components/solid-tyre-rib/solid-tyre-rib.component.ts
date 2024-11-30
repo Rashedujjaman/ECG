@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Tyre } from '../../interfaces/tyre';
 import { ProductService } from '../../services/product.service';
+import { SnackBarService } from '../../services/snackbar.service';
 
 
 @Component({
@@ -30,7 +31,11 @@ export class SolidTyreRibComponent implements OnInit {
   title2: string = 'Rib';
   imageUrl: string = 'assets/images/solid-tyre-rib.png';
 
-  constructor(private http: HttpClient, private productService: ProductService) { }
+  constructor(
+    private http: HttpClient,
+    private productService: ProductService,
+    private SnackBarService: SnackBarService
+  ) { }
 
   ngOnInit() {
     this.getSolidTyreRib();
@@ -86,13 +91,13 @@ export class SolidTyreRibComponent implements OnInit {
     if (confirm(`Are you sure you want to delete ${item.size}?`)) {
       this.productService.deleteSolidTyreRib(item.id).subscribe({
         next: () => {
-          alert('Product deleted successfully!');
+          this.SnackBarService.success('Product deleted successfully!', null, 2000);
           this.solidTyreRib = this.solidTyreRib.filter(tyre => tyre.id !== item.id);
           this.groupDataByCategory()
         },
         error: (error) => {
           console.error('Error deleting product:', error);
-          alert(error.error);
+          this.SnackBarService.error('An error occured deleting product.', null, 3000);
         }
       });
     }

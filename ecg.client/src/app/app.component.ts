@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,8 +10,19 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'ecg.client';
 
+  constructor(private router: Router) { }
+
   ngOnInit(): void {
     this.initMouseTrailEffect();
+  }
+
+  protected logoutRoot(): boolean {
+    if (this.router.url === '/') {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   private initMouseTrailEffect(): void {

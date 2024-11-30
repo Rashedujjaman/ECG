@@ -114,9 +114,6 @@ namespace ECG.Server.Controllers
             {
                 return BadRequest(e.Message);
             }
-        }
-
-
-        
+        }  
     }
 }

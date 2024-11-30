@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CompoundService } from '../../../services/compound.service';
 import { Compound } from '../../../interfaces/compound';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { SnackBarService } from '../../../services/snackbar.service';
 
 @Component({
   selector: 'app-compound-manager',
@@ -17,7 +18,7 @@ export class CompoundManagerComponent implements OnInit {
 
   faEdit = faEdit;
   faTrash = faTrash;
-  constructor(private fb: FormBuilder, private compoundService: CompoundService) {
+  constructor(private fb: FormBuilder, private compoundService: CompoundService, private SnackBarService: SnackBarService) {
     this.compoundForm = this.fb.group({
       name: ['', Validators.required],
       alias: ['', Validators.required],
@@ -35,7 +36,7 @@ export class CompoundManagerComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-        alert('Failed to fetch compounds.');
+        this.SnackBarService.error('Failed to fetch compounds.', null, 3000);
       }
     );
   }
@@ -64,14 +65,14 @@ export class CompoundManagerComponent implements OnInit {
 
       this.compoundService.updateCompound(updatedCompound).subscribe(
         (response) => {
-          alert('Compound updated successfully.');
+          this.SnackBarService.success('Compound updated successfully.', null, 2000);
           this.getCompounds();
           this.compoundForm.reset();
           this.selectedCompound = null;
         },
         (error) => {
           console.log(error);
-          alert('Failed to update compound.');
+          this.SnackBarService.error('Failed to update compound.', null, 3000);
         }
       );
     }

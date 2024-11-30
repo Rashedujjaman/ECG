@@ -10,10 +10,16 @@ import { SettingComponent } from './components/setting/setting.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AdminGuard } from './auth/admin.guard';
+import { BlankPageComponent } from './components/blank.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: BlankPageComponent,
+    title: 'Dashboard'
+  },
+  {
+    path: 'dummy',
     component: DashboardComponent,
     title: 'Dashboard'
   },
@@ -53,6 +59,7 @@ const routes: Routes = [
     component: LoginComponent,
     title: 'Loign'
   },
+
 
 ];
 

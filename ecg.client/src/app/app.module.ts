@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { BlankPageComponent } from './components/blank.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,7 @@ import { MilestoneManagerComponent } from './components/setting/milestone-manage
 import { CompoundManagerComponent } from './components/setting/compound-manager/compound-manager.component';
 import { AccountManagerComponent } from './components/setting/account-manager/account-manager.component';
 import { LoginComponent } from './components/login/login.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { LoginComponent } from './components/login/login.component';
     TableComponent, AboutComponent,
     MilestoneComponent, ContactComponent,
     QualityAssuranceComponent, CompoundComponent,
+
+    BlankPageComponent,
 
     LoginComponent,
 
@@ -61,7 +65,8 @@ import { LoginComponent } from './components/login/login.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

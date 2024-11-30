@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="/">HOME</a>
+          <a class="nav-link" aria-current="page" routerLink="/dummy">HOME</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/about">ABOUT US</a>
@@ -21,13 +21,12 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/qa">QUALITY ASSURANCE</a>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a class="nav-link" routerLink="/milestone">MILESTONE</a>
-        </li>
+        </li>-->
         <li class="nav-item">
           <a class="nav-link" routerLink="/contact">CONTACT US</a>
         </li>
-
         <li class="nav-item" *ngIf="authService.getAdminStatus()">
           <a class="nav-link" routerLink="/setting">SETTING</a>
         </li>
