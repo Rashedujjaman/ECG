@@ -21,7 +21,7 @@ namespace ECG.Server.Controllers
         {
             try
             {
-                var results = _dbContext.SolidTyreRib.ToList();
+                var results = _dbContext.SolidTyreRib.Where(r => r.isDeleted == false || r.isDeleted == null).ToList();
                 return Ok(results);
             }
             catch (Exception e)
@@ -101,8 +101,8 @@ namespace ECG.Server.Controllers
                 {
                     return NotFound("SolidTyreRib not found.");
                 }
-
-                _dbContext.SolidTyreRib.Remove(solidTyreRib);
+                solidTyreRib.isDeleted = true;
+                _dbContext.SolidTyreRib.Update(solidTyreRib);
                 _dbContext.SaveChanges();
                 return Ok();
             }

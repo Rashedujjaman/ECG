@@ -228,7 +228,7 @@ p {
 /* For the table header and image alignment */
 .table-container {
   overflow-x: auto;
-  padding-bottom: 20px;
+  padding: 20px 0;
 }
 
 .table-upper-header {
@@ -237,6 +237,9 @@ p {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }
 
 .model-title-container {
@@ -260,6 +263,19 @@ p {
   object-fit: contain;
 }
 
+@media (max-width: 992px){
+  .table-upper-header {
+    gap: 10px;
+  }
+
+  .model-title-container h1 {
+      font-size: 30px;
+  }
+  .model-title-container h5 {
+      font-size: 16px;
+  }
+}
+
 
 
 /* Table styling */
@@ -267,6 +283,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   font-size: 12px;
+  overflow-x: auto;
 }
 
 thead{
@@ -295,13 +312,9 @@ td {
 
 
 /* Responsive layout adjustments */
-@media (max-width: 767px) {
+@media (max-width: 992px) {
   .tables-section .row {
     flex-direction: column;
-  }
-
-  .table-container {
-    margin-bottom: 20px;
   }
 
   table{
@@ -333,17 +346,18 @@ td {
   flex-direction: column;
   padding: 20px 0;
   background: linear-gradient(to right, #D4EDDA, #D4EDDA, #008f66);
-  clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
 }
 
 .compound-title{
-  width: 600px;
+/*  width: 600px;*/
+  max-width: 800px;
   text-align: justify;
 }
 
 .compounds{
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -386,14 +400,56 @@ td {
   color: #fff;
 }
 
+.compound-6 {
+  background-color: orange;
+  color: #000;
+}
+.compound-7 {
+  background-color: #D4EDDA;
+  color: #000;
+}
+.compound-8 {
+  background-color: #2843f9;
+  color: #fff;
+}
+
 .compound-name{
   display: flex;
   flex-wrap: wrap;
   width: 60px;
   font-size: 12px;
-/*  background: red;*/
 }
 
+@media (max-width: 992px) {
+  .compound-container {
+    padding: 10px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .compounds {
+    justify-content: space-evenly;
+    gap: 10px;
+  }
+
+  .compound-title {
+    width: 100%;
+    margin: 0px, 50px;
+    font-size: 12px;
+  }
+  .compound-alias {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+  }
+  .compound-name {
+    font-size: 10px;
+  }
+}
+
+/*button*/
 .actions-column{
   width: 80px;
   gap: 10px;
@@ -517,19 +573,21 @@ td {
 
 .footer-nav{
     display: flex;
-/*    display: block;*/
-    flex-direction: column;
-    gap: 10px;
+    column-gap: 20px;
+    row-gap: 10px;
     list-style: none;
     height: fit-content;
     margin: 0;
     padding: 0;
+    flex-wrap: wrap;
 }
 
-/*  .footer-nav .nav-link {
+  .footer-nav .nav-item {
+  }
+  .footer-nav .nav-link {
     font-size: 12px;
     font-weight: lighter;
-  }*/
+  }
 
 @media (max-width: 992px) {
 

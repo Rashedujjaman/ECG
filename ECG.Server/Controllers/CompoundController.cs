@@ -16,19 +16,36 @@ namespace ECG.Server.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpGet("GetCompounds")]
-        public ActionResult<IEnumerable<Compound>> GetCompounds() 
+        [HttpGet("GetCompounds/{product}")]
+        public ActionResult<IEnumerable<Compound>> GetCompounds(string product)
         {
             try
             {
-                var result = _dbContext.Compound.ToList();
+                var result = _dbContext.Compound.Where(c => c.Product == product).ToList();
                 return Ok(result);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
- 
+        }
+
+
+        [Authorize]
+        [AdminOnly]
+        [HttpPost("AddCompound")]
+        public ActionResult<IEnumerable<Compound>> AddCompound([FromBody] Compound model)
+        {
+            try
+            {
+                _dbContext.Compound.Add(model);
+                _dbContext.SaveChanges();
+                return Ok(model);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [Authorize]
@@ -58,29 +75,29 @@ namespace ECG.Server.Controllers
             }
         }
 
-        //[Authorize]
-        //[AdminOnly]
-        //[HttpDelete("DeleteCompound/{id}")]
-        //public ActionResult DeleteCompound(int id)
-        //{
-        //    try
-        //    {
-        //        var compound = _dbContext.Compound.Find(id);
+        [Authorize]
+        [AdminOnly]
+        [HttpDelete("DeleteCompound/{id}")]
+        public ActionResult DeleteCompound(int id)
+        {
+            try
+            {
+                var compound = _dbContext.Compound.Find(id);
 
-        //        if (compound == null)
-        //        {
-        //            return NotFound("Compound Not Found");
-        //        }
+                if (compound == null)
+                {
+                    return NotFound("Compound Not Found");
+                }
 
-        //        _dbContext.Compound.Remove(compound);
-        //        _dbContext.SaveChanges();
+                _dbContext.Compound.Remove(compound);
+                _dbContext.SaveChanges();
 
-        //        return Ok();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

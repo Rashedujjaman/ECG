@@ -6,3 +6,6 @@
            (editItem)="onEdit($event)"
            (deleteItem)="onDelete($event)">
 </app-table>
+
+<app-compound [product]="product" *ngIf="!settingRoute()"></app-compound>
+

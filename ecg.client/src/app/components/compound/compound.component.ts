@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CompoundService } from '../../services/compound.service';
 import { Compound } from '../../interfaces/compound';
 import { SnackBarService } from '../../services/snackbar.service';
@@ -9,6 +9,8 @@ import { SnackBarService } from '../../services/snackbar.service';
 })
 
 export class CompoundComponent implements OnInit {
+  @Input() product: string = '';
+
   compounds: Compound[] = [];
   compound1!: Compound;
   compound2!: Compound;
@@ -26,7 +28,7 @@ export class CompoundComponent implements OnInit {
   }
 
   getCompounds() {
-    this.compoundService.getCompounds().subscribe(
+    this.compoundService.getCompounds(this.product).subscribe(
       (compounds) => {
       this.compounds = compounds;
       this.compound1 = this.compounds[0];

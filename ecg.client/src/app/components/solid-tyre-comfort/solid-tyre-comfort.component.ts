@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Tyre } from '../../interfaces/tyre';
 import { ProductService } from '../../services/product.service';
 import { SnackBarService } from '../../services/snackbar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'solid-tyre-comfort',
@@ -19,6 +20,8 @@ export class SolidTyreComfortComponent implements OnInit {
   public solidTyreComfort: Tyre[] = [];
   public groupedData: any[] = [];
 
+  product: string = 'stc';
+
   //table data
   title1: string = 'Solid Tyres';
   title2: string = 'Comfort';
@@ -27,7 +30,8 @@ export class SolidTyreComfortComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private productService: ProductService,
-    private SnackBarService: SnackBarService
+    private SnackBarService: SnackBarService,
+    protected router: Router
   ) { }
 
   ngOnInit() {
@@ -80,6 +84,15 @@ export class SolidTyreComfortComponent implements OnInit {
 
   onEdit(item: any) {
     this.editItem.emit(item);
+  }
+
+  protected settingRoute(): boolean {
+    if (this.router.url === '/setting') {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   onDelete(item: any) {

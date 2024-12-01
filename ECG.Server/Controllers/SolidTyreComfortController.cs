@@ -20,7 +20,7 @@ namespace ECG.Server.Controllers
         {
             try
             {
-                var results = _dbContext.SolidTyreComfort.ToList();
+                var results = _dbContext.SolidTyreComfort.Where(r => r.isDeleted == false || r.isDeleted == null).ToList();
                 return Ok(results);
             }
             catch (Exception e)
@@ -105,7 +105,8 @@ namespace ECG.Server.Controllers
                     return NotFound("Product not found.");
                 }
 
-                _dbContext.SolidTyreComfort.Remove(existingSolidTyreComfort);
+                existingSolidTyreComfort.isDeleted = true;
+                _dbContext.SolidTyreComfort.Update(existingSolidTyreComfort);
                 _dbContext.SaveChanges();
 
                 return Ok();

@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Tyre } from '../../interfaces/tyre';
 import { ProductService } from '../../services/product.service';
 import { SnackBarService } from '../../services/snackbar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'solid-tyre-smart',
@@ -19,6 +20,8 @@ export class SolidTyreSmartComponent implements OnInit {
   public solidTyreSmart: Tyre[] = [];
   public groupedData: any[] = [];
 
+  product: string = 'sts';
+
   title1: string = 'Solid Tyres';
   title2: string = 'Smart';
   imageUrl: string = 'assets/images/solid-tyre-smart.png';
@@ -26,14 +29,22 @@ export class SolidTyreSmartComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private productService: ProductService,
-    private SnackBarService: SnackBarService
+    private SnackBarService: SnackBarService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.getSolidTyreSmart();
   }
 
-
+  protected settingRoute(): boolean {
+    if (this.router.url === '/setting') {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 
   getSolidTyreSmart() {
     this.productService.getSolidTyreSmart().subscribe(

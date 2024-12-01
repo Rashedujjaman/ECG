@@ -10,7 +10,7 @@ import { faEye, faBullseye } from '@fortawesome/free-solid-svg-icons';
 export class AboutComponent implements OnInit {
 
   //images
-  bannerUrl: string = 'assets/images/banner03.jpg';
+  bannerUrl: string = 'assets/images/banner04.png';
   companyProfileImage: string = 'assets/images/factory-image.png';
   retreadingImage: string = 'assets/images/tyre.png';
 

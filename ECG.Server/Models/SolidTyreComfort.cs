@@ -11,5 +11,6 @@
         public int? LoadBearing { get; set; }
         public int? Steering { get; set; }
         public int? Category { get; set; }
+        public bool? isDeleted { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace ECG.Server.Controllers
         {
             try
             {
-                var results = _dbContext.SolidTyreSmart.ToList();
+                var results = _dbContext.SolidTyreSmart.Where(r => r.isDeleted == false || r.isDeleted == null).ToList();
                 return Ok(results);
             }
             catch (Exception e)
@@ -93,7 +93,9 @@ namespace ECG.Server.Controllers
                     return NotFound("Product not found");
                 }
 
-                _dbContext.SolidTyreSmart.Remove(existingSolidTyreSmart);
+                existingSolidTyreSmart.isDeleted = true;
+
+                _dbContext.SolidTyreSmart.Update(existingSolidTyreSmart);
                 _dbContext.SaveChanges();
                 return Ok();
             }

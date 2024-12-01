@@ -11,8 +11,12 @@ export class CompoundService {
   apiUrl = 'api/compound'
   constructor(private http: HttpClient) { }
 
-  getCompounds(): Observable<Compound[]> {
-    return this.http.get<Compound[]>(`${this.apiUrl}/getCompounds`);
+  getCompounds(product: string): Observable<Compound[]> {
+    return this.http.get<Compound[]>(`${this.apiUrl}/getCompounds/${product}`);
+  }
+
+  addCompound(compound: Compound): Observable<any> {
+    return this.http.post(`${this.apiUrl}/addCompound`, compound);
   }
 
   updateCompound(compound: Compound): Observable<any> {
