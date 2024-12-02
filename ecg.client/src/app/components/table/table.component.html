@@ -8,46 +8,48 @@
   </div>
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th rowspan="2">Ø Rim</th>
-      <th rowspan="2">Size</th>
-      <th rowspan="2">Rimsize</th>
-      <th rowspan="2">Weight kg±2%</th>
-      <th colspan="2">Sizes ±2%</th>
-      <th colspan="2">Speed 25 km/H max</th>
-      <th rowspan="2" *ngIf="isSettingPage">Actions</th>
-    </tr>
-    <tr>
-      <th>mm ±2%</th>
-      <th>Width ±2%</th>
-      <th>Load Bearing</th>
-      <th>Steering</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <ng-container *ngFor="let category of groupedData">
-      <tr *ngFor="let item of category.items; let i = index">
-        <!-- Only render the category cell in the first row of the group -->
-        <td *ngIf="i === 0" [attr.rowspan]="category.items.length">{{ category.category }}</td>
-        <td>{{ item.size }}</td>
-        <td>{{ item.rimsize }}</td>
-        <td>{{ item.weight }} KG</td>
-        <td>{{ item.mm }}</td>
-        <td>{{ item.width }}</td>
-        <td>{{ item.loadBearing }}</td>
-        <td>{{ item.steering }}</td>
-        <td class="actions-column" *ngIf="isSettingPage">
-          <button class="edit-button action-button" (click)="onEditProduct(item)">
-            <fa-icon [icon]="faEdit"></fa-icon>
-          </button>
-          <button class="delete-button action-button" (click)="onDeleteProduct(item)">
-            <fa-icon [icon]="faTrash"></fa-icon>
-          </button>
-        </td>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th rowspan="2">Ø Rim</th>
+        <th rowspan="2">Size</th>
+        <th rowspan="2">Rim Size</th>
+        <th rowspan="2">Weight kg ±2%</th>
+        <th colspan="2">Sizes ±2%</th>
+        <th colspan="2">Speed 25 km/H max</th>
+        <th rowspan="2" *ngIf="isSettingPage">Actions</th>
       </tr>
-    </ng-container>
-  </tbody>
-</table>
+      <tr>
+        <th>Ø mm ±2%</th>
+        <th>Width ±2%</th>
+        <th>Load Bearing</th>
+        <th>Steering</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <ng-container *ngFor="let category of groupedData">
+        <tr *ngFor="let item of category.items; let i = index">
+          <!-- Only render the category cell in the first row of the group -->
+          <td *ngIf="i === 0" [attr.rowspan]="category.items.length">{{ category.category }}</td>
+          <td>{{ item.size }}</td>
+          <td>{{ item.rimsize }}</td>
+          <td>{{ item.weight }} KG</td>
+          <td>{{ item.mm }}</td>
+          <td>{{ item.width }}</td>
+          <td>{{ item.loadBearing }}</td>
+          <td>{{ item.steering }}</td>
+          <td class="actions-column" *ngIf="isSettingPage">
+            <button class="edit-button action-button" (click)="onEditProduct(item)">
+              <fa-icon [icon]="faEdit"></fa-icon>
+            </button>
+            <button class="delete-button action-button" (click)="onDeleteProduct(item)">
+              <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

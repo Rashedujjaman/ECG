@@ -63,6 +63,26 @@ export class SolidTyreRibComponent implements OnInit {
       return acc;
     }, {} as Record<string | number, { category: string | number; items: Tyre[] }>);
 
+    // Sort the items within each category
+    Object.values(grouped).forEach(group => {
+      group.items.sort((a, b) => {
+        // Sort by category first
+        if (a.category !== b.category) {
+          return a.category.toString().localeCompare(b.category.toString());
+        }
+
+        // Sort by size next
+        if (a.size !== b.size) {
+          return a.size.localeCompare(b.size);
+        }
+
+        // Sort by rimsize, extracting the numeric part for comparison
+        const aRimSize = parseInt(a.rimsize.split(' ')[0]);
+        const bRimSize = parseInt(b.rimsize.split(' ')[0]);
+        return aRimSize - bRimSize;
+      });
+    });
+
     this.groupedData = Object.values(grouped);
   }
 

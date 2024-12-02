@@ -3,74 +3,82 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-
-// Configure EF Core with MySQL/MariaDB using `ApplicationDbContext`.
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+try
 {
-    var connectionString = builder.Configuration.GetConnectionString("Default");
-    var serverVersion = ServerVersion.AutoDetect(connectionString);
-    options.UseMySql(connectionString, serverVersion);
-});
+    var builder = WebApplication.CreateBuilder(args);
+
+    // Add services to the container.
+
+    builder.Services.AddControllers();
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
 
 
-//Cors Configuration
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(builder =>
+    // Configure EF Core with MySQL/MariaDB using `ApplicationDbContext`.
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
     {
-        builder.WithOrigins("http://comfortgreentyre.com.my")
-               .AllowAnyHeader()
-               .AllowAnyMethod();
+        var connectionString = builder.Configuration.GetConnectionString("Default");
+        var serverVersion = ServerVersion.AutoDetect(connectionString);
+        options.UseMySql(connectionString, serverVersion);
     });
-});
 
 
-var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-builder.Services.AddAuthentication("Bearer")
-    .AddJwtBearer(options =>
+    //Cors Configuration
+    builder.Services.AddCors(options =>
     {
-        options.TokenValidationParameters = new TokenValidationParameters
+        options.AddDefaultPolicy(builder =>
         {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = jwtSettings["Issuer"],
-            ValidAudience = jwtSettings["Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]))
-        };
+            builder.WithOrigins("http://comfortgreentyre.com.my")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
     });
 
 
-var app = builder.Build();
+    var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+    builder.Services.AddAuthentication("Bearer")
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = jwtSettings["Issuer"],
+                ValidAudience = jwtSettings["Audience"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]))
+            };
+        });
 
-app.UseDefaultFiles();
-app.UseStaticFiles();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+    var app = builder.Build();
+
+    app.UseDefaultFiles();
+    app.UseStaticFiles();
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+
+    app.UseCors();
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.MapFallbackToFile("/index.html");
+
+    app.Run();
+}
+catch (Exception ex)
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    Console.WriteLine($"An error occurred during startup: {ex.Message}");
+    throw;
 }
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.UseCors();
-
-app.MapControllers();
-
-app.MapFallbackToFile("/index.html");
-
-app.Run();

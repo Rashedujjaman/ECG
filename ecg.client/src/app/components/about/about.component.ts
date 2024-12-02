@@ -11,8 +11,10 @@ export class AboutComponent implements OnInit {
 
   //images
   bannerUrl: string = 'assets/images/banner04.png';
-  companyProfileImage: string = 'assets/images/factory-image.png';
-  retreadingImage: string = 'assets/images/tyre.png';
+  //companyProfileImage: string = 'assets/images/factory-image.png';
+  //retreadingImage: string = 'assets/images/tyre.png';
+  certificationImage: string = 'assets/images/certification_image.webp';
+  featureImage: string = 'assets/images/tyre.png';
 
   //icons
   faEye = faEye;

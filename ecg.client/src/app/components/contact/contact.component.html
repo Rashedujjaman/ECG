@@ -4,7 +4,8 @@
             height="300"
             style="border:0; padding:0; margin:0"
             loading="eager"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1985.9754628897394!2d101.09977965493853!3d4.6393003991594695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31caecccb61e5043%3A0x47c90942b7b3ba01!2sEversafe+Rubber!5e0!3m2!1sen!2smy!4v1523977602256">
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1985.9754628897394!2d101.09977965493853!3d4.6393003991594695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31caeccca9d0d92f!2s94+Lebuh+Portland,+Ipoh,+Perak!5e0!3m2!1sen!2smy!4v1672784008830">
+            <!--src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1985.9754628897394!2d101.09977965493853!3d4.6393003991594695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31caecccb61e5043%3A0x47c90942b7b3ba01!2sEversafe+Rubber!5e0!3m2!1sen!2smy!4v1523977602256">-->
     </iframe>
   </div>
 </section>
@@ -18,51 +19,51 @@
         <div class="w-100 mb-5">
           <!--Address-->
           <div class="row">
-            <div class="col-md-1 text-end">
+            <div class="col-1 text-end">
               <fa-icon [icon]="faHome"></fa-icon>
             </div>
-            <div class="col-md-11">
-              <h5><b>Comfort Green Tyre Sdn Bhd (1562061-W)</b></h5>
+            <div class="col-11">
+              <h6><strong>Comfort Green Tyre Sdn Bhd (1562061-W)</strong></h6>
               <span>94, Portland Avenue, Tasek Industrial Estate, <br/> 31400 Ipoh, Perak, Malaysia </span>
             </div>
           </div>
 
           <!--Phone-->
           <div class="row">
-            <div class="col-md-1 text-end">
+            <div class="col-1 text-end">
               <fa-icon [icon]="faPhone"></fa-icon>
             </div>
-            <div class="col-md-11">
+            <div class="col-11">
               <span>+605 291 0599</span>
             </div>
           </div>
 
           <!--Fax-->
           <div class="row">
-            <div class="col-md-1 text-end">
+            <div class="col-1 text-end">
               <fa-icon [icon]="faFax"></fa-icon>
             </div>
-            <div class="col-md-11">
+            <div class="col-11">
               <span>+605 291 1699</span>
             </div>
           </div>
 
           <!--Email-->
           <div class="row">
-            <div class="col-md-1 text-end">
+            <div class="col-1 text-end">
               <fa-icon [icon]="faMailBulk"></fa-icon>
             </div>
-            <div class="col-md-11">
+            <div class="col-11">
               <a href="mailTo:enquiry@comfortgreentyre.com.my">enquiry&#64;comfortgreentyre.com.my</a>
             </div>
           </div>
 
           <!--Website-->
           <div class="row">
-            <div class="col-md-1 text-end">
+            <div class="col-1 text-end">
               <fa-icon [icon]="faGlobe"></fa-icon>
             </div>
-            <div class="col-md-11">
+            <div class="col-11">
               <a href="www.comfortgreentyre.com.my" target="_blank">www.comfortgreentyre.com.my</a>
             </div>
           </div>
@@ -135,7 +136,7 @@
                <!--Full Name Field--> 
               <div class="mb-3">
                 <label for="fullName" class="form-label">Full Name</label>
-                <input type="text" formControlName="name" class="form-control" id="name" placeholder="Mr. Chong">
+                <input type="text" formControlName="name" class="form-control" id="name">
                 <span *ngIf="enquiryForm.get('fullName')?.invalid && enquiryForm.get('fullName')?.touched" class="text-danger">
                   Full Name is required.
                 </span>
@@ -144,7 +145,7 @@
                <!--Email Field--> 
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" formControlName="email" class="form-control" id="email" placeholder="name@example.com">
+                <input type="email" formControlName="email" class="form-control" id="email">
                 <span *ngIf="enquiryForm.get('email')?.invalid && enquiryForm.get('email')?.touched" class="text-danger">
                   Please enter a valid email address.
                 </span>
@@ -153,13 +154,13 @@
                <!--Address Field--> 
               <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" formControlName="address" class="form-control" id="address" placeholder="ABCD Avenue, Perak, 31000, Malaysia">
+                <input type="text" formControlName="address" class="form-control" id="address">
               </div>
 
                <!--Mobile No Field--> 
               <div class="mb-3">
                 <label for="mobileNo" class="form-label">Mobile No</label>
-                <input type="text" formControlName="mobileNo" class="form-control" id="mobileNo" placeholder="011123456">
+                <input type="text" formControlName="mobileNo" class="form-control" id="mobileNo">
                 <span *ngIf="enquiryForm.get('mobileNo')?.invalid && enquiryForm.get('mobileNo')?.touched" class="text-danger">
                   Please enter a valid mobile number.
                 </span>

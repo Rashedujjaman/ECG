@@ -3,6 +3,12 @@
     <app-navbar></app-navbar>
   </section>
 
+  <section *ngIf="!contactRoot() && !logoutRoot()">
+    <div class="banner">
+      <img [src]="bannerUrl" alt="Company Image" class="w-100"/>
+    </div>
+  </section>
+
   <section class="body-content">
     <router-outlet></router-outlet>
   </section>
@@ -10,6 +16,4 @@
   <section class="footer-content" *ngIf="!logoutRoot()">
     <app-footer></app-footer>
   </section>
-
-  <div id="mouse-trail"></div>
 </body>
