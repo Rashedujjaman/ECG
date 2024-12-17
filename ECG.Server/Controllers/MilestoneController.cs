@@ -118,7 +118,7 @@ namespace ECG.Server.Controllers
 
         [Authorize]
         [AdminOnly]
-        [HttpDelete("DeleteFileById/{fileId}")]
+        [HttpGet("DeleteFileById/{fileId}")]
         public async Task<IActionResult> DeleteFile(int fileId)
         {
             using var transaction = await _dbContext.Database.BeginTransactionAsync();
@@ -145,7 +145,7 @@ namespace ECG.Server.Controllers
 
         [Authorize]
         [AdminOnly]
-        [HttpDelete("DeleteMilestone/{milestoneId}")]
+        [HttpGet("DeleteMilestone/{milestoneId}")]
         public async Task<IActionResult> DeleteMilestone(int milestoneId)
         {
             using var transaction = await _dbContext.Database.BeginTransactionAsync();

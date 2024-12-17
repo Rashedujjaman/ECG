@@ -27,9 +27,9 @@ try
     //Cors Configuration
     builder.Services.AddCors(options =>
     {
-        options.AddDefaultPolicy(builder =>
+        options.AddPolicy("AllowAll", builder =>
         {
-            builder.WithOrigins("http://comfortgreentyre.com.my")
+            builder.AllowAnyOrigin()
                    .AllowAnyHeader()
                    .AllowAnyMethod();
         });
@@ -66,7 +66,7 @@ try
 
     app.UseHttpsRedirection();
 
-    app.UseCors();
+    app.UseCors("AllowAll");
 
     app.UseAuthorization();
 

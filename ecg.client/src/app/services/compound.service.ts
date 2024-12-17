@@ -20,10 +20,10 @@ export class CompoundService {
   }
 
   updateCompound(compound: Compound): Observable<any> {
-    return this.http.put(`${this.apiUrl}/updateCompound/${compound.id}`, compound);
+    return this.http.post(`${this.apiUrl}/updateCompound/${compound.id}`, compound);
   }
 
   deleteCompound(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/deleteCompound/${id}`);
+    return this.http.get(`${this.apiUrl}/deleteCompound/${id}`);
   }
 }

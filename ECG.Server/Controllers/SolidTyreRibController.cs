@@ -55,7 +55,7 @@ namespace ECG.Server.Controllers
 
         [Authorize]
         [AdminOnly]
-        [HttpPut("UpdateSolidTyreRib/{id}")]
+        [HttpPost("UpdateSolidTyreRib/{id}")]
         public ActionResult<SolidTyreRib> UpdateSolidTyreRib(int id, [FromBody] SolidTyreRib updatedSolidTyreRib)
         {
             if (updatedSolidTyreRib == null)
@@ -91,7 +91,7 @@ namespace ECG.Server.Controllers
 
         [Authorize]
         [AdminOnly]
-        [HttpDelete("DeleteSolidTyreRib/{id}")]
+        [HttpPut("DeleteSolidTyreRib/{id}")]
         public ActionResult DeleteSolidTyreRib(int id)
         {
             try

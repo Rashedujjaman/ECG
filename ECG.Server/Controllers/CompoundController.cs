@@ -50,7 +50,7 @@ namespace ECG.Server.Controllers
 
         [Authorize]
         [AdminOnly]
-        [HttpPut("UpdateCompound/{id}")]
+        [HttpPost("UpdateCompound/{id}")]
         public ActionResult<IEnumerable<Compound>> UpdateCompound(int id, [FromBody] Compound model)
         {
             try
@@ -77,7 +77,7 @@ namespace ECG.Server.Controllers
 
         [Authorize]
         [AdminOnly]
-        [HttpDelete("DeleteCompound/{id}")]
+        [HttpGet("DeleteCompound/{id}")]
         public ActionResult DeleteCompound(int id)
         {
             try

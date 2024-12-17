@@ -50,7 +50,7 @@ namespace ECG.Server.Controllers
 
         [Authorize]
         [AdminOnly]
-        [HttpPut("UpdateSolidTyreSmart/{id}")]
+        [HttpPost("UpdateSolidTyreSmart/{id}")]
         public ActionResult UpdateSolidTyreSmart(int id, [FromBody] SolidTyreSmart updatedProduct)
         {
             try
@@ -82,7 +82,7 @@ namespace ECG.Server.Controllers
 
         [Authorize]
         [AdminOnly]
-        [HttpDelete("DeleteSolidTyreSmart/{id}")]
+        [HttpGet("DeleteSolidTyreSmart/{id}")]
         public ActionResult DeleteSolidTyreSmart(int id)
         {
             try

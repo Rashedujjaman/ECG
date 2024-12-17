@@ -37,28 +37,28 @@ export class ProductService {
 
   //Update Product
   updateSolidTyreComfort(data: any): Observable<any> {
-    return this.http.put(`/api/solidTyreComfort/UpdateSolidTyreComfort/${data.id}`, data);
+    return this.http.post(`/api/SolidTyreComfort/UpdateSolidTyreComfort/${data.id}`, data);
   }
 
   updateSolidTyreSmart(data: any): Observable<any> {
-    return this.http.put(`/api/solidTyreSmart/UpdateSolidTyreSmart/${data.id}`, data);
+    return this.http.post(`/api/SolidTyreSmart/UpdateSolidTyreSmart/${data.id}`, data);
   }
 
   updateSolidTyreRib(data: any): Observable<any> {
-    return this.http.put(`/api/solidTyreRib/UpdateSolidTyreRib/${data.id}`, data);
+    return this.http.post(`/api/SolidTyreRib/UpdateSolidTyreRib/${data.id}`, data);
   }
 
 
   //Delete Product
   deleteSolidTyreComfort(id: number): Observable<any> {
-    return this.http.delete(`/api/solidTyreComfort/DeleteSolidTyreComfort/${id}`);
+    return this.http.get(`/api/SolidTyreComfort/DeleteSolidTyreComfort/${id}`);
   }
 
   deleteSolidTyreSmart(id: number): Observable<any> {
-    return this.http.delete(`/api/solidTyreSmart/DeleteSolidTyreSmart/${id}`);
+    return this.http.get(`/api/SolidTyreSmart/DeleteSolidTyreSmart/${id}`);
   }
 
   deleteSolidTyreRib(id: number): Observable<any> {
-    return this.http.delete(`/api/solidTyreRib/DeleteSolidTyreRib/${id}`);
+    return this.http.get(`/api/SolidTyreRib/DeleteSolidTyreRib/${id}`);
   }
 }

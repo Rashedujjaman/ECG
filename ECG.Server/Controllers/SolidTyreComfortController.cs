@@ -55,9 +55,11 @@ namespace ECG.Server.Controllers
 
         [Authorize]
         [AdminOnly]
-        [HttpPut("UpdateSolidTyreComfort/{id}")]
+        [HttpPost("UpdateSolidTyreComfort/{id}")]
         public ActionResult UpdateSolidTyreComfort(int id, [FromBody] SolidTyreComfort updatedProduct)
         {
+            Console.WriteLine($"Update request received for ID: {id}");
+
             if (updatedProduct == null || id != updatedProduct.Id)
             {
                 return BadRequest("Invalid product data.");
@@ -94,11 +96,12 @@ namespace ECG.Server.Controllers
 
         [Authorize]
         [AdminOnly]
-        [HttpDelete("DeleteSolidTyreComfort/{id}")]
+        [HttpGet("DeleteSolidTyreComfort/{id}")]
         public ActionResult DeleteSolidTyreComfort(int id)
         {
             try
             {
+                Console.WriteLine($"DELETE request received for ID: {id}");
                 var existingSolidTyreComfort = _dbContext.SolidTyreComfort.Find(id);
                 if (existingSolidTyreComfort == null)
                 {

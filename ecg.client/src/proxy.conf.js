@@ -9,6 +9,7 @@ const PROXY_CONFIG = [
       "/api"
     ],
     target: "https://localhost:7261",
+    //target: "http://comfortgreentyre.com.my:3306",
     secure: false,
     changeOrigin: true,
   },
