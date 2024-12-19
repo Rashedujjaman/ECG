@@ -29,7 +29,7 @@ export class ProductManagerComponent implements OnInit {
       category: [0, Validators.required],
       size: ['', Validators.required],
       rimSize: ['', Validators.required],
-      weight: [0, Validators.required],
+      weight: ['', Validators.required],
       mm: [0, Validators.required],
       width: [0, Validators.required],
       loadBearing: [0, Validators.required],

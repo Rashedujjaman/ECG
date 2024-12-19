@@ -5,7 +5,7 @@
             On customer request we can manufacture our solid tyres with the below mentioned compounds:</span>
     </div>
     <div class="compounds">
-      <div class="compound" *ngIf="compound1">
+      <div class="compound" *ngIf="compound1 && hasValue(compound1.name) && hasValue(compound1.alias)">
         <div class="circle compound-alias compound-1">
           <span>{{compound1.alias}}</span>
         </div>
@@ -13,7 +13,7 @@
           <span>{{compound1.name}}</span>
         </div>
       </div>
-      <div class="compound" *ngIf="compound2">
+      <div class="compound" *ngIf="compound2 && hasValue(compound2.name) && hasValue(compound2.alias)">
         <div class="circle compound-alias compound-2">
           <span>{{compound2.alias}}</span>
         </div>
@@ -21,7 +21,7 @@
           <span>{{compound2.name}}</span>
         </div>
       </div>
-      <div class="compound" *ngIf="compound3">
+      <div class="compound" *ngIf="compound3  && hasValue(compound3.name) && hasValue(compound3.alias)">
         <div class="circle compound-alias compound-3">
           <span>{{compound3.alias}}</span>
         </div>
@@ -29,7 +29,7 @@
           <span>{{compound3.name}}</span>
         </div>
       </div>
-      <div class="compound" *ngIf="compound4">
+      <div class="compound" *ngIf="compound4 && hasValue(compound4.name) && hasValue(compound4.alias)">
         <div class="circle compound-alias compound-4">
           <span>{{compound4.alias}}</span>
         </div>
@@ -37,7 +37,7 @@
           <span>{{compound4.name}}</span>
         </div>
       </div>
-      <div class="compound" *ngIf="compound5">
+      <div class="compound" *ngIf="compound5 && hasValue(compound5.name) && hasValue(compound5.alias)">
         <div class="circle compound-alias compound-5">
           <span>{{compound5.alias}}</span>
         </div>
@@ -45,7 +45,7 @@
           <span>{{compound5.name}}</span>
         </div>
       </div>
-      <div class="compound" *ngIf="compound6">
+      <div class="compound" *ngIf="compound6 && hasValue(compound6.name) && hasValue(compound6.alias)">
         <div class="circle compound-alias compound-6">
           <span>{{compound6.alias}}</span>
         </div>
@@ -53,7 +53,7 @@
           <span>{{compound6.name}}</span>
         </div>
       </div>
-      <div class="compound" *ngIf="compound7">
+      <div class="compound" *ngIf="compound7 && hasValue(compound7.name) && hasValue(compound7.alias)">
         <div class="circle compound-alias compound-7">
           <span>{{compound7.alias}}</span>
         </div>
@@ -61,7 +61,7 @@
           <span>{{compound7.name}}</span>
         </div>
       </div>
-      <div class="compound" *ngIf="compound8">
+      <div class="compound" *ngIf="compound8 && hasValue(compound8.name) && hasValue(compound8.alias)">
         <div class="circle compound-alias compound-8">
           <span>{{compound8.alias}}</span>
         </div>

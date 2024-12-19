@@ -91,7 +91,7 @@ namespace ECG.Server.Controllers
 
         [Authorize]
         [AdminOnly]
-        [HttpPut("DeleteSolidTyreRib/{id}")]
+        [HttpGet("DeleteSolidTyreRib/{id}")]
         public ActionResult DeleteSolidTyreRib(int id)
         {
             try

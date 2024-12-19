@@ -45,4 +45,8 @@ export class CompoundComponent implements OnInit {
         console.error(error);
     });
   }
+
+  protected hasValue(value: string): boolean {
+    return value === '\"\"' || value === '\'\'' || value === 'skip' ? false : true;
+  }
 }

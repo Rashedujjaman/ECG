@@ -78,8 +78,20 @@ export class SolidTyreSmartComponent implements OnInit {
         }
 
         // Sort by size next
+        //if (a.size !== b.size) {
+        //  return a.size.localeCompare(b.size);
+        //}
+
+        // Sort by size next
         if (a.size !== b.size) {
-          return a.size.localeCompare(b.size);
+          const sizeToNumber = (size: string): number => {
+            const match = size.match(/[\d.]+/g);
+            return match ? parseFloat(match[0]) : 0;
+          };
+
+          const aSize = sizeToNumber(a.size);
+          const bSize = sizeToNumber(b.size);
+          return aSize - bSize;
         }
 
         // Sort by rimsize, extracting the numeric part for comparison

@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public string? Size { get; set; }
         public string? Rimsize { get; set; }
-        public float? Weight { get; set; }
+        public string? Weight { get; set; }
         public int? MM { get; set; }
         public int? Width { get; set; }
         public int? LoadBearing { get; set; }

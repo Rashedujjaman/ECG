@@ -19,10 +19,10 @@
 
       <form *ngIf="selectedTyreModel" [formGroup]="productForm" (ngSubmit)="onProductSubmit()">
         <div class="mb-3">
-          <label for="category" class="form-label">Category</label>
-          <input type="number" id="category" formControlName="category" class="form-control" placeholder="Enter Category">
+          <label for="category" class="form-label">Ø Rim</label>
+          <input type="number" id="category" formControlName="category" class="form-control" placeholder="Enter Rim">
           <div *ngIf="productForm.controls['category'].invalid && productForm.controls['category'].touched" class="text-danger">
-            Category is required.
+            Ø Rim is required.
           </div>
         </div>
         <div class="mb-3">
@@ -41,7 +41,7 @@
         </div>
         <div class="mb-3 ">
           <label for="weight" class="form-label">Weight</label>
-          <input type="number" id="weight" formControlName="weight" class="form-control" placeholder="Enter Weight">
+          <input type="text" id="weight" formControlName="weight" class="form-control" placeholder="Enter Weight">
           <div *ngIf="productForm.controls['weight'].invalid && productForm.controls['weight'].touched" class="text-danger">
             Weight is required.
           </div>

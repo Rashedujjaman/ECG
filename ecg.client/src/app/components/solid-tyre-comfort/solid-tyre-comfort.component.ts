@@ -72,7 +72,14 @@ export class SolidTyreComfortComponent implements OnInit {
 
         // Sort by size next
         if (a.size !== b.size) {
-          return a.size.localeCompare(b.size);
+          const sizeToNumber = (size: string): number => {
+            const match = size.match(/[\d.]+/g);
+            return match ? parseFloat(match[0]) : 0;
+          };
+
+          const aSize = sizeToNumber(a.size);
+          const bSize = sizeToNumber(b.size);
+          return aSize - bSize;
         }
 
         // Sort by rimsize, extracting the numeric part for comparison
@@ -84,19 +91,6 @@ export class SolidTyreComfortComponent implements OnInit {
 
     this.groupedData = Object.values(grouped);
   }
-
-  //groupDataByCategory() {
-  //  const grouped = this.solidTyreComfort.reduce((acc, item) => {
-  //    const category = item.category ?? '';
-  //    if (!acc[category]) {
-  //      acc[category] = { category, items: [] };
-  //    }
-  //    acc[category].items.push(item);
-  //    return acc;
-  //  }, {} as Record<string | number, { category: string | number; items: Tyre[] }>);
-
-  //  this.groupedData = Object.values(grouped);
-  //}
 
   // Add a single tyre to the table
   addNewTyre(newTyre: Tyre) {

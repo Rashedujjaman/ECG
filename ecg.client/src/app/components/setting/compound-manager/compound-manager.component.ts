@@ -66,7 +66,9 @@ export class CompoundManagerComponent implements OnInit {
     if (this.isEditMode) {
       this.updateCompound();
     }
-    this.addCompound();
+    else {
+      this.addCompound();
+    }
   }
 
   addCompound() {

@@ -2,7 +2,7 @@ export interface Tyre {
   id: number;
   size: string;
   rimsize: string;
-  weight: number;
+  weight: string;
   mm: number;
   width: number;
   loadBearing: number;
