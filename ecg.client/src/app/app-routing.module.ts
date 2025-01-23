@@ -15,14 +15,14 @@ import { BlankPageComponent } from './components/blank.component';
 const routes: Routes = [
   {
     path: '',
-    component: BlankPageComponent,
-    title: 'Dashboard'
-  },
-  {
-    path: 'dummy',
     component: DashboardComponent,
     title: 'Dashboard'
   },
+  //{
+  //  path: 'dummy',
+  //  component: DashboardComponent,
+  //  title: 'Dashboard'
+  //},
   {
     path: 'product',
     component: ProductComponent,

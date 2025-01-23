@@ -1,9 +1,9 @@
 <body>
-  <section class="header-content" *ngIf="!logoutRoot()">
+  <section class="header-content">
     <app-navbar></app-navbar>
   </section>
 
-  <section *ngIf="!contactRoot() && !logoutRoot()">
+  <section *ngIf="!contactRoot()">
     <div class="banner">
       <img [src]="bannerUrl" alt="Company Image" class="w-100"/>
     </div>
@@ -13,7 +13,7 @@
     <router-outlet></router-outlet>
   </section>
 
-  <section class="footer-content" *ngIf="!logoutRoot()">
+  <section class="footer-content">
     <app-footer></app-footer>
   </section>
 </body>

@@ -17,14 +17,14 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  protected logoutRoot(): boolean {
-    if (this.router.url === '/') {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
+  //protected logoutRoot(): boolean {
+  //  if (this.router.url === '/') {
+  //    return true;
+  //  }
+  //  else {
+  //    return false;
+  //  }
+  //}
 
   protected contactRoot(): boolean {
     if (this.router.url === '/contact') {
