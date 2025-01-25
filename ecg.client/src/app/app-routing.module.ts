@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    title: 'Dashboard'
+    title: 'Comfort Green Tyre'
   },
   //{
   //  path: 'dummy',
@@ -26,38 +26,38 @@ const routes: Routes = [
   {
     path: 'product',
     component: ProductComponent,
-    title: 'Products'
+    title: 'Comfort Green Tyre'
   },
   {
     path: 'about',
     component: AboutComponent,
-    title: 'About Us'
+    title: 'Comfort Green Tyre'
   },
   {
     path: 'milestone',
     component: MilestoneComponent,
-    title: 'Milestones'
+    title: 'Comfort Green Tyre'
   },
   {
     path: 'contact',
     component: ContactComponent,
-    title: 'Contact Us'
+    title: 'Comfort Green Tyre'
   },
   {
     path: 'qa',
     component: QualityAssuranceComponent,
-    title: 'Quality Assurance'
+    title: 'Comfort Green Tyre'
   },
   {
     path: 'setting',
     component: SettingComponent,
-    title: 'Setting',
+    title: 'Comfort Green Tyre',
     canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'login',
     component: LoginComponent,
-    title: 'Loign'
+    title: 'Comfort Green Tyre'
   },
 
 
