@@ -22,19 +22,19 @@ namespace ECG.Server.Controllers
         }
 
         [HttpPost("AddEnquiry")]
-        public async Task<ActionResult> AddNewEnquiry([FromBody] Enquiry model)
+        public async Task<ActionResult> AddNewEnquiry([FromBody] Enquiry enquiry)
         {
             try
             {
-                model.DateTime = DateTimeOffset.Now;
+                enquiry.DateTime = DateTimeOffset.Now;
 
-                await _dbContext.Enquiry.AddAsync(model);
+                await _dbContext.Enquiry.AddAsync(enquiry);
                 var result = await _dbContext.SaveChangesAsync();
                 if (result == 0)
                 {
                     return BadRequest("Failed to save enquiry.");
                 }
-                //await SendEmailAsync(model.Email, "New Enquiry", model.Name, model.Message);
+                await SendEmailAsync(enquiry);
                 return Ok();
             }
             catch (Exception ex)
@@ -43,7 +43,8 @@ namespace ECG.Server.Controllers
             }
         }
 
-        private async Task SendEmailAsync(string fromEmail, string subject, string name, string body)
+        //private async Task SendEmailAsync(string fromEmail, string subject, string name, string body)
+        private async Task SendEmailAsync(Enquiry enquiry)
         {
             try
             {
@@ -51,16 +52,59 @@ namespace ECG.Server.Controllers
                 email.From.Add(new MailboxAddress("Comfotr Green Tyre", _configuration["Email:From"]));
 
                 email.To.Add(new MailboxAddress("Admin", _configuration["Email:To"]));
-                email.Subject = subject;
-                email.Body = new TextPart("plain") { Text = body };
+                email.Subject = "New Enquiry";
+                //email.Body = new TextPart("plain") { Text =  enquiry.Message };
+
+                // An HTML table for the email body
+                string htmlBody = $@"
+                <html>
+                <body>
+                    <h1>Dear Admin,</h1>
+                    <h2>You have received new enquiry from customer.</h2>
+                    <table border='1' cellpadding='10' cellspacing='0' style='border-collapse: collapse; width: 100%;'>
+                        <tr style='background-color: #f2f2f2;'>
+                            <th style='text-align: left;'>Particular</th>
+                            <th style='text-align: left;'>Details</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Name</strong></td>
+                            <td>{enquiry.Name}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Email</strong></td>
+                            <td>{enquiry.Email}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phone</strong></td>
+                            <td>{enquiry.MobileNo}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date</strong></td>
+                            <td>{enquiry.DateTime}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Address</strong></td>
+                            <td>{enquiry.Address}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Message</strong></td>
+                            <td>{enquiry.Message}</td>
+                        </tr>
+                    </table>
+                    <h5>Please respond to the customer as soon as possible.</h5>
+                </body>
+                </html>
+                ";
+
+                email.Body = new TextPart("html") { Text = htmlBody };
 
                 using var smtp = new SmtpClient();
-                smtp.Connect(_configuration["Email:Host"], 465, true);
-                //smtp.Connect(_configuration["Email:Host"], int.Parse(_configuration["Email:Port"]), true);
+                //smtp.Connect(_configuration["Email:Host"], 465, true);
+                smtp.Connect(_configuration["Email:Host"], int.Parse(_configuration["Email:Port"]), true);
                 //await smtp.StartTlsAsync();
-                var Username = _configuration["Email: Username"];
-                var Password = _configuration["Email: Password"];
-                smtp.Authenticate("robiulboksi17@gmail.com", "Rubel@1234");
+                var Username = _configuration["Email:Username"];
+                var Password = _configuration["Email:Password"];
+                smtp.Authenticate(Username, Password);
 
                 await smtp.SendAsync(email);
                 smtp.Disconnect(true);
