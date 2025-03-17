@@ -53,7 +53,6 @@ namespace ECG.Server.Controllers
 
                 email.To.Add(new MailboxAddress("Admin", _configuration["Email:To"]));
                 email.Subject = "New Enquiry";
-                //email.Body = new TextPart("plain") { Text =  enquiry.Message };
 
                 // An HTML table for the email body
                 string htmlBody = $@"
@@ -99,9 +98,8 @@ namespace ECG.Server.Controllers
                 email.Body = new TextPart("html") { Text = htmlBody };
 
                 using var smtp = new SmtpClient();
-                //smtp.Connect(_configuration["Email:Host"], 465, true);
                 smtp.Connect(_configuration["Email:Host"], int.Parse(_configuration["Email:Port"]), true);
-                //await smtp.StartTlsAsync();
+
                 var Username = _configuration["Email:Username"];
                 var Password = _configuration["Email:Password"];
                 smtp.Authenticate(Username, Password);
@@ -109,8 +107,6 @@ namespace ECG.Server.Controllers
                 await smtp.SendAsync(email);
                 smtp.Disconnect(true);
                 smtp.Dispose();
-
-                //return Ok("Email sent successfully.");
             }
             catch (Exception)
             {
