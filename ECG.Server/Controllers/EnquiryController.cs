@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ECG.Server.Data;
+﻿using ECG.Server.Data;
 using ECG.Server.Models;
+using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MimeKit;
-using MailKit.Net.Smtp;
+using System.Text;
 
 
 namespace ECG.Server.Controllers
@@ -128,4 +129,51 @@ namespace ECG.Server.Controllers
             }
         }
     }
+
+
+
+
+
+    //public class CharacterCounter
+    //{
+    //    public static Dictionary<char, int> CountDistinctCharacters(string word)
+    //    {
+    //        Dictionary<char, int> charCounts = new Dictionary<char, int>();
+
+    //        foreach (char c in word)
+    //        {
+    //            if (charCounts.ContainsKey(c))
+    //            {
+    //                charCounts[c]++;
+    //            }
+
+    //            else
+    //            {
+    //                charCounts.Add(c, 1);
+    //            }
+    //        }
+
+    //        return charCounts;
+    //    }
+
+    //    public static void Main(string[] args)
+    //    {
+    //        string word = "banana";
+    //        Dictionary<char, int> counts = CountDistinctCharacters(word);
+
+    //        Console.WriteLine($"Character counts for \"{word}\":");
+    //        foreach (var entry in counts)
+    //        {
+    //            Console.WriteLine($"'{entry.Key}': {entry.Value}");
+    //        }
+
+    //        word = "hello world";
+    //        counts = CountDistinctCharacters(word);
+    //        Console.WriteLine($"\nCharacter counts for \"{word}\":");
+    //        foreach (var entry in counts)
+    //        {
+    //            Console.WriteLine($"'{entry.Key}': {entry.Value}");
+    //        }
+    //    }
+    //}
 }
